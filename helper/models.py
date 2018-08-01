@@ -62,7 +62,7 @@ class Vehicle(models.Model):
                                 on_delete=models.SET_NULL)
     
     def __str__(self):
-        return ' '.join(self.make, self.model, self.reg_number)
+        return " ".join([self.make, self.model, self.reg_number])
 
 class Policy(models.Model):
     INSTALLMENTS_CHOICES = (

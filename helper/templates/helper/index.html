@@ -1,0 +1,9 @@
+{% if policy_list %}
+    <ul>
+        {%for policy in policy_list %}
+            <li><a href="/helper/{{ policy.id }}/">{{ policy.number }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No policies.</p>
+{% endif %}
