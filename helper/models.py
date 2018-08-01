@@ -1,4 +1,5 @@
 from django.db import models
+from datetime.date import today
 
 # Create your models here.
 
@@ -17,7 +18,7 @@ class Vehicle(models.Model):
         (PRZYCZEPA, 'Przyczepa'),
         (CIAGNIK_ROLNICZY, 'Ciągnik rolniczy'),
         (CIAGNIK_SIODLOWY, 'Ciągnik siodłowy'),
-        (AUTOBUS, 'Autobus')
+        (AUTOBUS, 'Autobus'),
     )
     vehicle_type = models.CharField(
         max_length=2,
@@ -40,4 +41,34 @@ class Client(models.Model):
     name = models.CharField(max_length=100)
     pesel_or_regon = models.CharField(max_length=20)
     address = models.CharField(max_length=200)
+    phone_number = models.CharField(max_length=20)
     email = models.CharField(max_length=100)
+
+class Policy(models.Model):
+    INSTALLMENTS_CHOICES = (
+        (1, 'jedna'),
+        (2, 'dwie'),
+        (4, 'cztery'),
+    )
+    PAYMENT_CHOICES = (
+        (1, 'gotówka'),
+        (2, 'przelew')
+    )
+    number = models.CharField(max_length=20)
+    date_issued = models.DateField(default=date.today)
+    date_start = models.DateField()
+    date_end = models.DateField()
+    premium = models.DecimalField(max_digits=7, decimal_places=2)
+    installments = models.IntegerField(
+        choices = INSTALLMENTS_CHOICES,
+        default=1,
+    )
+    payment = models.IntegerField(
+        choices=PAYMENT_CHOICES,
+        default=1,
+    )
+    insurer = models.ForeignKey(Insurer, on_delete=models.CASCADE)
+
+class Insurer(models.Model):
+    name = models.CharField(max_length=20)
+
