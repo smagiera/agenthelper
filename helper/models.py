@@ -1,7 +1,30 @@
 from django.db import models
-from datetime.date import today
+import datetime
 
 # Create your models here.
+
+class Client(models.Model):
+    name = models.CharField(max_length=100)
+    pesel_or_regon = models.CharField(max_length=20)
+    address = models.CharField(max_length=200)
+    phone_number = models.CharField(max_length=20)
+    email = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return self.name
+
+class Leasing(models.Model):
+    name = models.CharField(max_length=100)
+    regon = models.CharField(max_length=20)
+    address = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name
+
+class Insurer(models.Model):
+    name = models.CharField(max_length=20)
+    def __str__(self):
+        return self.name
 
 class Vehicle(models.Model):
     OSOBOWY = "OS"
@@ -35,14 +58,11 @@ class Vehicle(models.Model):
     seats = models.IntegerField
     first_registered = models.DateField
     owner = models.ForeignKey(Client, on_delete=models.CASCADE)
-    leasing = models.ForeignKey(Leasing)
-
-class Client(models.Model):
-    name = models.CharField(max_length=100)
-    pesel_or_regon = models.CharField(max_length=20)
-    address = models.CharField(max_length=200)
-    phone_number = models.CharField(max_length=20)
-    email = models.CharField(max_length=100)
+    leasing = models.ForeignKey(Leasing, blank=True, null=True,
+                                on_delete=models.SET_NULL)
+    
+    def __str__(self):
+        return ' '.join(self.make, self.model, self.reg_number)
 
 class Policy(models.Model):
     INSTALLMENTS_CHOICES = (
@@ -55,7 +75,7 @@ class Policy(models.Model):
         (2, 'przelew')
     )
     number = models.CharField(max_length=20)
-    date_issued = models.DateField(default=date.today)
+    date_issued = models.DateField()
     date_start = models.DateField()
     date_end = models.DateField()
     premium = models.DecimalField(max_digits=7, decimal_places=2)
@@ -69,6 +89,8 @@ class Policy(models.Model):
     )
     insurer = models.ForeignKey(Insurer, on_delete=models.CASCADE)
 
-class Insurer(models.Model):
-    name = models.CharField(max_length=20)
+    def __str__(self):
+        return self.number
+
+
 
