@@ -1,18 +1,18 @@
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
-from django.template import loader
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404,render
+from django.urls import reverse
+from django.views import generic
 
-from .models import Policy
+from .models import Policy, Vehicle
 
-# Create your views here.
+class IndexView(generic.ListView):
+    template_name = 'helper/index.html'
+    context_object_name = 'policy_list'
 
-def index(request):
-    policy_list = Policy.objects.order_by('-date_issued')[:10]
-    context = {
-        'policy_list': policy_list,
-    }
-    return render(request, 'helper/index.html', context)
+    def get_queryset(self):
+        """Return 10 last issued policies"""
+        return Policy.objects.order_by('-date_issued')[:10]
 
-def details(request, policy_id):
-    policy = get_object_or_404(Policy, pk=policy_id)
-    return render(request, 'helper/details.html', {'policy': policy})
+class DetailView(generic.DetailView):
+    model = Policy
+    template_name = 'helper/details.html'

@@ -1,12 +1,41 @@
-<h1>{{ policy.number }}</h1>
+{% extends "helper/base.html" %}
+
+{% block title %}Polisa nr {{ policy.number }} - szczegóły{% endblock %}
+{% block content %}
+<h1>Polisa numer {{ policy.number }}</h1>
 <table>
-    {% for k,v in table %}
-        <tr>
-            <td>{{ k }}</td>
-        </tr>
-        <tr>
-            <td>{{ v }}</td>
-        </tr>
-    {% endfor %}
+    <tr>
+        <td>Numer polisy</td>
+        <td>{{ policy.number }}</td>
+    </tr>
+    <tr>
+        <td>Marka</td>
+        <td>{{ policy.vehicle.make }}</td>
+    </tr>
+    <tr>
+        <td>Model</td>
+        <td>{{ policy.vehicle.model }}</td>
+    </tr>
+    <tr>
+        <td>Numer rejestracyjny</td>
+        <td>{{ policy.vehicle.reg_number }}</td>
+    </tr>
+    <tr>
+        <td>Właściciel</td>
+        <td>{{ policy.vehicle.owner.name }}</td>
+    </tr>
+    <tr>
+        <td>Data rozpoczęcia</td>
+        <td>{{ policy.date_start }}</td>
+    </tr>
+    <tr>
+        <td>Data zakończenia</td>
+        <td>{{ policy.date_end }}</td>
+    </tr>
+    <tr>
+        <td>Składka</td>
+        <td>{{ policy.premium }}</td>
+    </tr>
 </table>
+{% endblock %}
     

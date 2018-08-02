@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{% block title %}Agent Helper{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'helper/main.css' %}" />
+    <script src="main.js"></script>
+</head>
+<body>
+    <div id="sidebar">
+        {% block sidebar %}
+        <ul>
+            <li><a href="/">Strona główna</a></li>
+            <li><a href="/">Lista polis</a></li>
+            <li><a href="/clients">Lista klientów</a></li>
+            <li><a href="/vehicles">Lista pojazdów</a></li>
+            <li><a href="/addpolicy">Dodaj polisę</a></li>
+        </ul>
+        {% endblock %}
+    </div>
+
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

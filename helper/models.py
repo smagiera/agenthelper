@@ -1,5 +1,4 @@
 from django.db import models
-import datetime
 
 # Create your models here.
 
@@ -88,6 +87,7 @@ class Policy(models.Model):
         default=1,
     )
     insurer = models.ForeignKey(Insurer, on_delete=models.CASCADE)
+    vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.number

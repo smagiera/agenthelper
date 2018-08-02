@@ -1,9 +1,15 @@
+{% extends "helper/base.html" %}
+
+{% block title %}Lista polis{% endblock %}
+
+{%block content %}
 {% if policy_list %}
     <ul>
         {%for policy in policy_list %}
-            <li><a href="/helper/{{ policy.id }}/">{{ policy.number }}</a></li>
+            <li><a href="{% url 'helper:details' policy.id %}">{{ policy.number }}</a></li>
         {% endfor %}
     </ul>
 {% else %}
     <p>No policies.</p>
 {% endif %}
+{% endblock %}
