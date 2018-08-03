@@ -9,6 +9,9 @@ class Client(models.Model):
     address = models.CharField(max_length=200)
     phone_number = models.CharField(max_length=20)
     email = models.CharField(max_length=100)
+
+    def get_absolute_url(self):
+        return reverse('helper:client_details')
     
     def __str__(self):
         return self.name
@@ -44,7 +47,7 @@ class Vehicle(models.Model):
         (AUTOBUS, 'Autobus'),
     )
     vehicle_type = models.CharField(
-        max_length=2,
+        max_length=16,
         choices=TYPE_CHOICE,
         default=OSOBOWY,
     )
@@ -60,6 +63,9 @@ class Vehicle(models.Model):
     owner = models.ForeignKey(Client, on_delete=models.CASCADE)
     leasing = models.ForeignKey(Leasing, blank=True, null=True,
                                 on_delete=models.SET_NULL)
+
+    def get_absolute_url(self):
+        return reverse('helper:vehicle_details', kwargs={'pk': self.pk})
     
     def __str__(self):
         return " ".join([self.make, self.model, self.reg_number])

@@ -15,11 +15,13 @@
         {% block sidebar %}
         <b>Nawigacja</b>
         <ul>
-            <li><a href="/helper">Strona główna</a></li>
-            <li><a href="/helper">Lista polis</a></li>
-            <li><a href="/clients">Lista klientów</a></li>
-            <li><a href="/helper/vehicles">Lista pojazdów</a></li>
-            <li><a href="/helper/add">Dodaj polisę</a></li>
+            <li><a href="{% url 'helper:index' %}">Strona główna</a></li>
+            <li><a href="{% url 'helper:index' %}">Lista polis</a></li>
+            <li><a href="{% url 'helper:clients' %}">Lista klientów</a></li>
+            <li><a href="{% url 'helper:vehicles' %}">Lista pojazdów</a></li>
+            <li><a href="{% url 'helper:create' %}">Dodaj polisę</a></li>
+            <li><a href="{% url 'helper:vehicle_add' %}">Dodaj pojazd</a></li>
+            <li><a href="{% url 'helper:client_add' %}">Dodaj klienta</a></li>
         </ul>
         {% endblock %}
     </div>

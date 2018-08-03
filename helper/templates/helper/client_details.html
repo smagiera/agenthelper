@@ -1,0 +1,32 @@
+{%extends "helper/base.html" %}
+
+{% block title %}Klient {{client.name}} - szczegóły{% endblock %}
+
+{% block content %}
+<h1>Klient {{ client.name }}</h1>
+<table>
+    <tr>
+        <td>Imię i nazwisko / nazwa firmy</td>
+        <td>{{ client.name }}</td>
+    </tr>
+    <tr>
+        <td>Pesel/Regon</td>
+        <td>{{ client.pesel_or_regon }}</td>
+    </tr>
+    <tr>
+        <td>Adres</td>
+        <td>{{ client.address }}</td>
+    </tr>
+    <tr>
+        <td>Telefon</td>
+        <td>{{ client.phone_number }}</td>
+    </tr>
+    <tr>
+        <td>Email</td>
+        <td>{{ client.email }}</td>
+    </tr>
+</table>
+<br>
+<a href="{% url 'helper:client_edit' client.id %}">Edytuj klienta</a>
+<a href="{% url 'helper:client_delete' client.id %}">Usuń klienta</a>
+{% endblock %}

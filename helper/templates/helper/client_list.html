@@ -1,0 +1,15 @@
+{% extends "helper/base.html" %}
+
+{% block title %}Lista klientów{% endblock %}
+
+{% block content %}
+{% if client_list %}
+    <ul>
+        {%for client in client_list %}
+            <li><a href="{% url 'helper:client_details' client.id %}">{{ client.name }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Brak klientów.</p>
+{% endif %}
+{% endblock %}

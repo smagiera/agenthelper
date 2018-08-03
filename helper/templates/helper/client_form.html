@@ -1,0 +1,12 @@
+{% extends "helper/base.html" %}
+
+{% block title %}Dodaj/edytuj polisę{{ policy.number }}{% endblock %}
+
+{% block content %}
+<form method="POST">{% csrf_token %}
+    <table border="1">
+    {{ form }}
+    </table>
+    <input type="submit" value="Zapisz" />
+</form>
+{% endblock %}

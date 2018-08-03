@@ -4,8 +4,8 @@ from django.urls import reverse,reverse_lazy
 from django.views import generic
 from django import forms
 
-from .models import Policy, Vehicle
-from .forms import PolicyForm, VehicleForm
+from .models import Policy, Vehicle, Client
+from .forms import PolicyForm, VehicleForm, ClientForm
 
 
 class IndexView(generic.ListView):
@@ -46,7 +46,7 @@ class VehicleDetail(generic.DetailView):
     template_name = 'helper/vehicle_details.html'
 
 class VehicleCreate(generic.CreateView):
-    model = Vehicle
+    form_class = VehicleForm
     template_name = 'helper/vehicle_form.html'
 
 class VehicleUpdate(generic.UpdateView):
@@ -57,3 +57,28 @@ class VehicleUpdate(generic.UpdateView):
 class VehicleDelete(generic.DeleteView):
     model = Vehicle
     success_url = reverse_lazy('helper:vehicles')
+
+class ClientList(generic.ListView):
+    template_name = 'helper:client_list.html'
+    context_object_name = 'client_list'
+
+    def get_queryset(self):
+        """Return all clients"""
+        return Client.objects.all()
+
+class ClientDetail(generic.DetailView):
+    model = Client
+    template_name = 'helper/client_details.html'
+
+class ClientCreate(generic.CreateView):
+    form_class = ClientForm
+    template_name = 'helper/client_form.html'
+
+class ClientUpdate(generic.UpdateView):
+    model = Client
+    form_class = ClientForm
+    template_name = 'helper/client_form.html'
+
+class ClientDelete(generic.DeleteView):
+    model = Client
+    success_url = reverse_lazy('helper:clients')

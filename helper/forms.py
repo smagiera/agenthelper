@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Policy, Vehicle
+from .models import Policy, Vehicle, Client
 
 class PolicyForm(ModelForm):
     class Meta:
@@ -26,3 +26,10 @@ class VehicleForm(ModelForm):
         widgets = {
             'first_registered': forms.DateInput(attrs={'class': 'datepicker'}),
         }
+
+class ClientForm(ModelForm):
+    class Meta:
+        model = Client
+        fields = [
+            'name', 'pesel_or_regon', 'address', 'phone_number', 'email',
+        ]
