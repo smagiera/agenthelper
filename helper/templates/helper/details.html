@@ -33,9 +33,18 @@
         <td>{{ policy.date_end }}</td>
     </tr>
     <tr>
+        <td>Data wystawienia</td>
+        <td>{{ policy.date_issued }}</td>
+    </tr>
+    <tr>
+        <td>TU</td>
+        <td>{{ policy.insurer }}</td>
+    </tr>
+    <tr>
         <td>Składka</td>
         <td>{{ policy.premium }}</td>
     </tr>
 </table>
+<br>
 {% endblock %}
     

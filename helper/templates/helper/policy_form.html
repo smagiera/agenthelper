@@ -1,0 +1,25 @@
+{% extends "helper/base.html" %}
+
+{% block title %}Dodaj/edytuj polisę{{ policy.number }}{% endblock %}
+
+{% block scripts %}
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script>
+    $(function() {
+        $( ".datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
+      
+      
+        });
+</script>
+{% endblock %}
+
+{% block content %}
+<form method="POST">{% csrf_token %}
+    <table border="1">
+    {{ form }}
+    </table>
+    <input type="submit" value="Zapisz" />
+</form>
+{% endblock %}

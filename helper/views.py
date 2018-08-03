@@ -2,8 +2,11 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404,render
 from django.urls import reverse
 from django.views import generic
+from django import forms
 
 from .models import Policy, Vehicle
+from .forms import PolicyForm
+
 
 class IndexView(generic.ListView):
     template_name = 'helper/index.html'
@@ -16,3 +19,7 @@ class IndexView(generic.ListView):
 class DetailView(generic.DetailView):
     model = Policy
     template_name = 'helper/details.html'
+
+class PolicyCreate(generic.CreateView):
+    form_class = PolicyForm
+    template_name = 'helper/policy_form.html'

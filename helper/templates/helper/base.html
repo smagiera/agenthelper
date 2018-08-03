@@ -8,16 +8,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="{% static 'helper/main.css' %}" />
     <script src="main.js"></script>
+    {% block scripts %}{% endblock %}
 </head>
 <body>
     <div id="sidebar">
         {% block sidebar %}
+        <b>Nawigacja</b>
         <ul>
-            <li><a href="/">Strona główna</a></li>
-            <li><a href="/">Lista polis</a></li>
+            <li><a href="/helper">Strona główna</a></li>
+            <li><a href="/helper">Lista polis</a></li>
             <li><a href="/clients">Lista klientów</a></li>
             <li><a href="/vehicles">Lista pojazdów</a></li>
-            <li><a href="/addpolicy">Dodaj polisę</a></li>
+            <li><a href="/helper/add">Dodaj polisę</a></li>
         </ul>
         {% endblock %}
     </div>

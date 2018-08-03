@@ -781,12 +781,14 @@ table#change-history tbody th {
     float: left;
     width: 100%;
 }
-
-#content-related {
-    float: right;
+/* was #content-related */
+#sidebar {
+    float: left;
     width: 260px;
     position: relative;
-    margin-right: -300px;
+    margin-top: 5%;
+    margin-left: 20px;
+    /*margin-right: -300px;*/
 }
 
 #footer {

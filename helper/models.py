@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 
@@ -88,6 +89,9 @@ class Policy(models.Model):
     )
     insurer = models.ForeignKey(Insurer, on_delete=models.CASCADE)
     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
+
+    def get_absolute_url(self):
+        return reverse('helper:details', kwargs={'pk': self.pk})
 
     def __str__(self):
         return self.number
