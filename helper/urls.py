@@ -7,4 +7,5 @@ urlpatterns = [
     path('<int:pk>/details/', views.DetailView.as_view(), name='details'),
     path('add/', views.PolicyCreate.as_view(), name='create'),
     path('<int:pk>/edit', views.PolicyUpdate.as_view(), name='edit'),
+    path('<int:pk>/delete', views.PolicyDelete.as_view(), name='delete')
 ]

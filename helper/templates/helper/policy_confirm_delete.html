@@ -1,0 +1,12 @@
+{% extends "helper/base.html" %}
+
+{% block title %}Usuń polisę{{ policy.number }}{% endblock %}
+
+{% block content %}
+<p>Czy jesteś pewien, że chcesz usunąć polisę {{ policy.number }}?<br>
+    Aby anulować, kliknij wstecz.
+</p>
+<form method="POST">{% csrf_token %}
+    <input type="submit" value="Usuń"/>
+</form>
+{% endblock %}
