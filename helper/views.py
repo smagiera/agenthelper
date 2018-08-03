@@ -23,3 +23,8 @@ class DetailView(generic.DetailView):
 class PolicyCreate(generic.CreateView):
     form_class = PolicyForm
     template_name = 'helper/policy_form.html'
+
+class PolicyUpdate(generic.UpdateView):
+    model = Policy
+    form_class = PolicyForm
+    template_name = 'helper/policy_form.html'
