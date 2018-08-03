@@ -27,13 +27,13 @@ class Insurer(models.Model):
         return self.name
 
 class Vehicle(models.Model):
-    OSOBOWY = "OS"
-    CIEZAROWY = "CI"
-    MOTOCYKL = "MO"
-    PRZYCZEPA = "PR"
-    CIAGNIK_ROLNICZY = "CR"
-    CIAGNIK_SIODLOWY = "CS"
-    AUTOBUS = "AU"
+    OSOBOWY = "Osobowy"
+    CIEZAROWY = "Ciężarowy"
+    MOTOCYKL = "Motocykl"
+    PRZYCZEPA = "Przyczepa"
+    CIAGNIK_ROLNICZY = "Ciągnik Rolniczy"
+    CIAGNIK_SIODLOWY = "Ciągnik Siodłowy"
+    AUTOBUS = "Autobus"
     TYPE_CHOICE = (
         (OSOBOWY, 'Osobowy'),
         (CIEZAROWY, 'Ciężarowy'),
@@ -52,11 +52,11 @@ class Vehicle(models.Model):
     model = models.CharField(max_length=50)
     reg_number = models.CharField(max_length=10)
     vin = models.CharField(max_length=17)
-    manufacture_year = models.IntegerField
-    capacity = models.IntegerField
-    power = models.IntegerField
-    seats = models.IntegerField
-    first_registered = models.DateField
+    manufacture_year = models.IntegerField()
+    capacity = models.IntegerField()
+    power = models.IntegerField()
+    seats = models.IntegerField()
+    first_registered = models.DateField()
     owner = models.ForeignKey(Client, on_delete=models.CASCADE)
     leasing = models.ForeignKey(Leasing, blank=True, null=True,
                                 on_delete=models.SET_NULL)

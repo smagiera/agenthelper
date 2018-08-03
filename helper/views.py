@@ -5,7 +5,7 @@ from django.views import generic
 from django import forms
 
 from .models import Policy, Vehicle
-from .forms import PolicyForm
+from .forms import PolicyForm, VehicleForm
 
 
 class IndexView(generic.ListView):
@@ -32,3 +32,28 @@ class PolicyUpdate(generic.UpdateView):
 class PolicyDelete(generic.DeleteView):
     model = Policy
     success_url = reverse_lazy('helper:index')
+
+class VehicleList(generic.ListView):
+    template_name = 'helper:vehicle_list.html'
+    context_object_name = 'vehicle_list'
+
+    def get_queryset(self):
+        """Return all vehicles"""
+        return Vehicle.objects.all()
+
+class VehicleDetail(generic.DetailView):
+    model = Vehicle
+    template_name = 'helper/vehicle_details.html'
+
+class VehicleCreate(generic.CreateView):
+    model = Vehicle
+    template_name = 'helper/vehicle_form.html'
+
+class VehicleUpdate(generic.UpdateView):
+    model = Vehicle
+    form_class = VehicleForm
+    template_name = 'helper/vehicle_form.html'
+
+class VehicleDelete(generic.DeleteView):
+    model = Vehicle
+    success_url = reverse_lazy('helper:vehicles')

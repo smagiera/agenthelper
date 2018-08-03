@@ -1,0 +1,15 @@
+{% extends "helper/base.html" %}
+
+{% block title %}Lista pojazdów{% endblock %}
+
+{% block content %}
+{% if vehicle_list %}
+    <ul>
+        {%for vehicle in vehicle_list %}
+            <li><a href="{% url 'helper:vehicle_details' vehicle.id %}">{{ vehicle.reg_number }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Brak pojazdów.</p>
+{% endif %}
+{% endblock %}

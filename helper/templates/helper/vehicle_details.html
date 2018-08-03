@@ -1,0 +1,59 @@
+{% extends "helper/base.html" %}
+
+{% block title %}Pojazd {{vehicle.reg_number}} - szczegóły{% endblock %}
+{% block content %}
+<h1>Pojazd {{vehicle.reg_number}}</h1>
+<table>
+    <tr>
+        <td>Typ</td>
+        <td>{{ vehicle.vehicle_type }}</td>
+    </tr>
+    <tr>
+        <td>Marka</td>
+        <td>{{ vehicle.make }}</td>
+    </tr>
+    <tr>
+        <td>Model</td>
+        <td>{{ vehicle.model }}</td>
+    </tr>
+    <tr>
+        <td>Numer rejestracyjny</td>
+        <td>{{ vehicle.reg_number }}</td>
+    </tr>
+    <tr>
+        <td>VIN</td>
+        <td>{{ vehicle.vin }}</td>
+    </tr>
+    <tr>
+        <td>Rok produkcji</td>
+        <td>{{ vehicle.manufacture_year }}</td>
+    </tr>
+    <tr>
+        <td>Pojemność</td>
+        <td>{{ vehicle.capacity }}</td>
+    </tr>
+    <tr>
+        <td>Moc(kW)</td>
+        <td>{{ vehicle.power }}</td>
+    </tr>
+    <tr>
+        <td>Liczba miejsc</td>
+        <td>{{ vehicle.seats }}</td>
+    </tr>
+    <tr>
+        <td>Data pierwszej rejetracji</td>
+        <td>{{ vehicle.first_registered }}</td>
+    </tr>
+    <tr>
+        <td>Właściciel</td>
+        <td>{{ vehicle.owner }}</td>
+    </tr>
+    <tr>
+        <td>Leasing</td>
+        <td>{{ vehicle.leasing }}</td>
+    </tr>
+</table>
+<br>
+<a href="{% url 'helper:vehicle_edit' vehicle.id %}">Edytuj pojazd</a>
+<a href="{% url 'helper:vehicle_delete' vehicle.id %}">Usuń pojazd</a>
+{% endblock %}
