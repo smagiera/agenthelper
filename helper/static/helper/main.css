@@ -67,7 +67,7 @@ body {
 -----------------------------------------------------------------------------*/
 .header {
 	height: 50px;
-	background: #FFE680;
+	text-align: center;
 }
 
 
@@ -100,7 +100,6 @@ body {
 	width: 250px;
 	margin-left: -100%;
 	position: relative;
-	background: #B5E3FF;
 }
 
 
@@ -110,6 +109,6 @@ body {
 	margin: -100px auto 0;
 	min-width: 1000px;
 	height: 50px;
-	background: #BFF08E;
 	position: relative;
+	text-align: center;
 }

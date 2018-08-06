@@ -6,36 +6,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{% block title %}Agent Helper{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'helper/main.css' %}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'helper/admin.css' %}" />
     <script src="main.js"></script>
     {% block scripts %}{% endblock %}
 </head>
 <body>
-    <header class="header">
+    <header id="header">
         <h1>Pomocnik Agenta</h1>
     </header>
-    <div class="middle">
-        <div class="container">
-            <main class="content">
-                {% block content %}{% endblock %}
-            </main>
+        <div id="content">
+            {% block content %}{% endblock %}
         </div>
-        <aside class="left-sidebar">
-                {% block sidebar %}
-                <b>Nawigacja</b>
-                <ul>
-                    <li><a href="{% url 'helper:index' %}">Strona główna</a></li>
-                    <li><a href="{% url 'helper:index' %}">Lista polis</a></li>
-                    <li><a href="{% url 'helper:clients' %}">Lista klientów</a></li>
-                    <li><a href="{% url 'helper:vehicles' %}">Lista pojazdów</a></li>
-                    <li><a href="{% url 'helper:create' %}">Dodaj polisę</a></li>
-                    <li><a href="{% url 'helper:vehicle_add' %}">Dodaj pojazd</a></li>
-                    <li><a href="{% url 'helper:client_add' %}">Dodaj klienta</a></li>
-                </ul>
-                {% endblock %}
-        </aside>
-    </div>
-    <footer class="footer">
+        <div id="sidebar">
+            {% block sidebar %}
+            <b>Nawigacja</b>
+            <ul>
+                <li><a href="{% url 'helper:index' %}">Strona główna</a></li>
+                <li><a href="{% url 'helper:index' %}">Lista polis</a></li>
+                <li><a href="{% url 'helper:clients' %}">Lista klientów</a></li>
+                <li><a href="{% url 'helper:vehicles' %}">Lista pojazdów</a></li>
+                <li><a href="{% url 'helper:create' %}">Dodaj polisę</a></li>
+                <li><a href="{% url 'helper:vehicle_add' %}">Dodaj pojazd</a></li>
+                <li><a href="{% url 'helper:client_add' %}">Dodaj klienta</a></li>
+            </ul>
+            {% endblock %}
+        </div>
+    <footer id="footer">
         <p>Developed by <a href="https://smagiera.pl">Samuel Magiera</a></p>
     </footer>
 </body>
