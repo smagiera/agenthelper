@@ -11,23 +11,32 @@
     {% block scripts %}{% endblock %}
 </head>
 <body>
-    <div id="sidebar">
-        {% block sidebar %}
-        <b>Nawigacja</b>
-        <ul>
-            <li><a href="{% url 'helper:index' %}">Strona główna</a></li>
-            <li><a href="{% url 'helper:index' %}">Lista polis</a></li>
-            <li><a href="{% url 'helper:clients' %}">Lista klientów</a></li>
-            <li><a href="{% url 'helper:vehicles' %}">Lista pojazdów</a></li>
-            <li><a href="{% url 'helper:create' %}">Dodaj polisę</a></li>
-            <li><a href="{% url 'helper:vehicle_add' %}">Dodaj pojazd</a></li>
-            <li><a href="{% url 'helper:client_add' %}">Dodaj klienta</a></li>
-        </ul>
-        {% endblock %}
+    <header class="header">
+        <h1>Pomocnik Agenta</h1>
+    </header>
+    <div class="middle">
+        <div class="container">
+            <main class="content">
+                {% block content %}{% endblock %}
+            </main>
+        </div>
+        <aside class="left-sidebar">
+                {% block sidebar %}
+                <b>Nawigacja</b>
+                <ul>
+                    <li><a href="{% url 'helper:index' %}">Strona główna</a></li>
+                    <li><a href="{% url 'helper:index' %}">Lista polis</a></li>
+                    <li><a href="{% url 'helper:clients' %}">Lista klientów</a></li>
+                    <li><a href="{% url 'helper:vehicles' %}">Lista pojazdów</a></li>
+                    <li><a href="{% url 'helper:create' %}">Dodaj polisę</a></li>
+                    <li><a href="{% url 'helper:vehicle_add' %}">Dodaj pojazd</a></li>
+                    <li><a href="{% url 'helper:client_add' %}">Dodaj klienta</a></li>
+                </ul>
+                {% endblock %}
+        </aside>
     </div>
-
-    <div id="content">
-        {% block content %}{% endblock %}
-    </div>
+    <footer class="footer">
+        <p>Developed by <a href="https://smagiera.pl">Samuel Magiera</a></p>
+    </footer>
 </body>
 </html>
