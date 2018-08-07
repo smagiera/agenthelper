@@ -1,8 +1,9 @@
-from django.urls import path
+from django.urls import path,re_path,include
 from . import views
 
 app_name = 'helper'
 urlpatterns = [
+    re_path(r'^search/', include('haystack.urls'), name='search'),
     # policy views
     path('', views.IndexView.as_view(), name='index'),
     path('<int:pk>/details/', views.DetailView.as_view(), name='details'),

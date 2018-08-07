@@ -1,0 +1,5 @@
+{{ object.reg_number }}
+{{ object.vin }}
+{{ object.make }}
+{{ object.model }}
+{{ object.owner }}

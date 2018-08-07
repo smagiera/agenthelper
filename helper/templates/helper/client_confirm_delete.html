@@ -1,9 +1,9 @@
 {% extends "helper/base.html" %}
 
-{% block title %}Usuń pojazd{{ vehicle.number }}{% endblock %}
+{% block title %}Usuń klienta{{ client.name }}{% endblock %}
 
 {% block content %}
-<p>Czy jesteś pewien, że chcesz usunąć pojazd {{ vehicle.number }}?<br>
+<p>Czy jesteś pewien, że chcesz usunąć klienta {{ client.name }}?<br>
     Aby anulować, kliknij wstecz.
 </p>
 <form method="POST">{% csrf_token %}

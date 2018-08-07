@@ -82,6 +82,7 @@ class Policy(models.Model):
         (2, 'przelew')
     )
     number = models.CharField(max_length=20)
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
     date_issued = models.DateField()
     date_start = models.DateField()
     date_end = models.DateField()

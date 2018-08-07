@@ -6,7 +6,7 @@ class PolicyForm(ModelForm):
     class Meta:
         model = Policy
         fields = [
-        'number', 'date_start', 'date_end', 'date_issued', 'premium',
+        'number', 'client', 'date_start', 'date_end', 'date_issued', 'premium',
         'payment', 'installments', 'vehicle', 'insurer', 'scan1', 'scan2', 'scan3', 
         ]
         widgets = {
