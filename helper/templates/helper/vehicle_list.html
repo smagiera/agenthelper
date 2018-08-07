@@ -4,11 +4,20 @@
 
 {% block content %}
 {% if vehicle_list %}
-    <ul>
+    <table>
+        <th>Numer rejestracyjny</th>
+        <th>Marka</th>
+        <th>Model</th>
+        <th>Właściciel</th>
         {%for vehicle in vehicle_list %}
-            <li><a href="{% url 'helper:vehicle_details' vehicle.id %}">{{ vehicle.reg_number }}</a></li>
+            <tr>
+            <td><a href="{% url 'helper:vehicle_details' vehicle.id %}">{{ vehicle.reg_number }}</a></td>
+            <td>{{ vehicle.make }}</td>
+            <td>{{ vehicle.model }}</td>
+            <td>{{ vehicle.owner }}</td>
+            </tr>
         {% endfor %}
-    </ul>
+    </table>
 {% else %}
     <p>Brak pojazdów.</p>
 {% endif %}

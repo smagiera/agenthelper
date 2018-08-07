@@ -44,6 +44,19 @@
         <td>Składka</td>
         <td>{{ policy.premium }}</td>
     </tr>
+    <tr>
+        <td>Skan 1</td>
+        <td>{% if policy.scan1 %}<a href="{{policy.scan1.file}}"><img src="{{policy.scan1.file}}" height="100" width="50"/></a>{% endif %}</td>
+    </tr>
+    <tr>
+        <td>Skan 2</td>
+        <td>{% if policy.scan2 %}<a href="{{policy.scan2.file}}"><img src="{{policy.scan2.file}}" height="100" width="50"/></a>{% endif %}</td>
+    </tr>
+    <tr>
+        <td>Skan 3</td>
+        <td>{% if policy.scan3 %}<a href="{{policy.scan3.file}}"><img src="{{policy.scan3.file}}" height="100" width="50"/></a>{% endif %}</td>
+    </tr>
+
 </table>
 <br>
 <a href="{% url 'helper:edit' policy.id %}">Edytuj polisę</a>

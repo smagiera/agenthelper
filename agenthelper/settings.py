@@ -70,6 +70,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'agenthelper.wsgi.application'
 
+MEDIA_ROOT="media/"
+
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases

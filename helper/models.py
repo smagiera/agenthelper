@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 
+
 # Create your models here.
 
 class Client(models.Model):
@@ -11,7 +12,7 @@ class Client(models.Model):
     email = models.CharField(max_length=100)
 
     def get_absolute_url(self):
-        return reverse('helper:client_details')
+        return reverse('helper:client_details', kwargs={'pk': self.pk})
     
     def __str__(self):
         return self.name
@@ -95,6 +96,9 @@ class Policy(models.Model):
     )
     insurer = models.ForeignKey(Insurer, on_delete=models.CASCADE)
     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
+    scan1 = models.ImageField(blank=True)
+    scan2 = models.ImageField(blank=True)
+    scan3 = models.ImageField(blank=True)
 
     def get_absolute_url(self):
         return reverse('helper:details', kwargs={'pk': self.pk})

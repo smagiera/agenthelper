@@ -4,11 +4,17 @@
 
 {% block content %}
 {% if client_list %}
-    <ul>
+    <table>
+        <th>Imię i nazwisko/Nazwa firmy</th>
+        <th>Adres</th>
+        <th>Telefon</th>
         {%for client in client_list %}
-            <li><a href="{% url 'helper:client_details' client.id %}">{{ client.name }}</a></li>
+        <tr>
+            <td><a href="{% url 'helper:client_details' client.id %}">{{ client.name }}</a></td>
+            <td>{{ client.address }}</td>
+            <td>{{ client.phone_number }}</td>
+        </tr>
         {% endfor %}
-    </ul>
 {% else %}
     <p>Brak klientów.</p>
 {% endif %}

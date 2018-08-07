@@ -16,6 +16,14 @@ class IndexView(generic.ListView):
         """Return 10 last issued policies"""
         return Policy.objects.order_by('-date_issued')[:10]
 
+class PolicyList(generic.ListView):
+    template_name = 'helper:policy_list.html'
+    context_object_name = 'policy_list'
+
+    def get_queryset(self):
+        """Return all policies"""
+        return Policy.objects.all()
+
 class DetailView(generic.DetailView):
     model = Policy
     template_name = 'helper/details.html'

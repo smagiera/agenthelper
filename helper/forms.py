@@ -7,7 +7,7 @@ class PolicyForm(ModelForm):
         model = Policy
         fields = [
         'number', 'date_start', 'date_end', 'date_issued', 'premium',
-        'payment', 'installments', 'vehicle', 'insurer', 
+        'payment', 'installments', 'vehicle', 'insurer', 'scan1', 'scan2', 'scan3', 
         ]
         widgets = {
             'date_start': forms.DateInput(attrs={'class': 'datepicker'}),
