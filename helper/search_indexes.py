@@ -4,7 +4,7 @@ from helper.models import Policy, Client, Vehicle
 
 
 class PolicyIndex(indexes.SearchIndex, indexes.Indexable):
-    text = indexes.CharField(document=True, use_template=True)
+    text = indexes.EdgeNgramField(document=True, use_template=True)
     number = indexes.CharField(model_attr='number')
     vehicle = indexes.CharField(model_attr='vehicle')
     client = indexes.CharField(model_attr='client')
@@ -20,7 +20,7 @@ class PolicyIndex(indexes.SearchIndex, indexes.Indexable):
         return self.get_model().objects.filter(date_issued__lte=datetime.datetime.now())
 
 class VehicleIndex(indexes.SearchIndex, indexes.Indexable):
-    text = indexes.CharField(document=True, use_template=True)
+    text = indexes.EdgeNgramField(document=True, use_template=True)
     reg_number = indexes.CharField(model_attr='reg_number')
     make = indexes.CharField(model_attr='make')
     model = indexes.CharField(model_attr='model')
@@ -31,7 +31,7 @@ class VehicleIndex(indexes.SearchIndex, indexes.Indexable):
         return Vehicle
 
 class ClientIndex(indexes.SearchIndex, indexes.Indexable):
-    text = indexes.CharField(document=True, use_template=True)
+    text = indexes.EdgeNgramField(document=True, use_template=True)
     name = indexes.CharField(model_attr='name')
     id = indexes.CharField(model_attr='pesel_or_regon')
 

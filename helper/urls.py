@@ -22,5 +22,7 @@ urlpatterns = [
     path('clients/<int:pk>/', views.ClientDetail.as_view(), name='client_details'),
     path('clients/<int:pk>/edit', views.ClientUpdate.as_view(), name='client_edit'),
     path('clients/<int:pk>/delete', views.ClientDelete.as_view(), name='client_delete'),
-    path('clients/add', views.ClientCreate.as_view(), name='client_add'),    
+    path('clients/add', views.ClientCreate.as_view(), name='client_add'),
+    # insurer add view
+    path('addinsurer/', views.InsurerCreate.as_view(), name='insurer_add'),
 ]

@@ -1,7 +1,7 @@
 {% extends 'helper/base.html' %}
 
 {% block content %}
-    <h2>Search</h2>
+    <h2>Wyszukiwanie</h2>
 
     <form method="get" action=".">
         <table>
@@ -9,13 +9,13 @@
             <tr>
                 <td>&nbsp;</td>
                 <td>
-                    <input type="submit" value="Search">
+                    <input type="submit" value="Szukaj">
                 </td>
             </tr>
         </table>
 
         {% if query %}
-            <h3>Results</h3>
+            <h3>Wynik wyszukiwania</h3>
 
             {% for result in page.object_list %}
                 <p>

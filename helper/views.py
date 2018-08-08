@@ -5,7 +5,7 @@ from django.views import generic
 from django import forms
 
 from .models import Policy, Vehicle, Client
-from .forms import PolicyForm, VehicleForm, ClientForm
+from .forms import PolicyForm, VehicleForm, ClientForm, InsurerForm
 
 
 class IndexView(generic.ListView):
@@ -90,3 +90,8 @@ class ClientUpdate(generic.UpdateView):
 class ClientDelete(generic.DeleteView):
     model = Client
     success_url = reverse_lazy('helper:clients')
+
+class InsurerCreate(generic.CreateView):
+    form_class = InsurerForm
+    template_name = 'helper/insurer_form.html'
+    success_url = reverse_lazy('helper:index')

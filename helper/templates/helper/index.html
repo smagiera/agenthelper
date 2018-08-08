@@ -15,7 +15,7 @@
         {%for policy in policy_list %}
         <tr>
             <td><a href="{% url 'helper:details' policy.id %}">{{ policy.number }}</a></li></td>
-            <td>{{ policy.vehicle.owner }}</td>
+            <td>{{ policy.client }}</td>
             <td>{{ policy.vehicle }}</td>
             <td>{{ policy.premium }}</td>
             <td>{{ policy.date_start }}</td>
