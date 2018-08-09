@@ -1,7 +1,7 @@
 {% extends "helper/base.html" %}
 
 {% block content %}
-
+<div id=result>
 {% if policy_list %}
         <table>
             <th>Numer polisy</th>
@@ -24,4 +24,5 @@
 {% else %}
     <p>No policies.</p>
 {% endif %}
+</div>
 {% endblock %}

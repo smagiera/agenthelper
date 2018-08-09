@@ -9,24 +9,23 @@
 <link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
   <script>
   $( function() {
-    var options = $.extend(
-    $.datepicker.regional["pl"],      
-    );
-$.datepicker.setDefaults(options);
-    var dateFormat = "yy-mm-dd",
+    $.datepicker.setDefaults($.datepicker.regional['pl']);
       from = $( "#from" )
         .datepicker({
+          dateFormat: "yy-mm-dd",
           defaultDate: "+1w",
           changeMonth: true,
-          numberOfMonths: 1
+          numberOfMonths: 1,
+          defaultDate: new Date(),
         })
         .on( "change", function() {
           to.datepicker( "option", "minDate", getDate( this ) );
         }),
       to = $( "#to" ).datepicker({
+        dateFormat: "yy-mm-dd",
         defaultDate: "+1w",
         changeMonth: true,
-        numberOfMonths: 1
+        numberOfMonths: 1,
       })
       .on( "change", function() {
         from.datepicker( "option", "maxDate", getDate( this ) );
@@ -43,6 +42,18 @@ $.datepicker.setDefaults(options);
       return date;
     }
   } );
+  $(function() {
+    $('#fire').click(function() {
+      var date1 = document.getElementById("from").value;
+      var date2 = document.getElementById("to").value;
+        $('#results').load("policies/"+date1+"&"+date2+" #result");
+
+        // it's important to return false from the click
+        // cancel the default action
+        // execute the AJAX request
+        return false;
+    });
+});
   </script>
 {% endblock %}
 
@@ -54,4 +65,7 @@ $.datepicker.setDefaults(options);
 <label for="to">do:</label>
 <input type="text" id="to" name="to">
 <br>
+<a id=fire>Fire!</a>
+
+<div id=results></div>
 {% endblock %}

@@ -18,12 +18,14 @@ class IndexView(generic.ListView):
         return Policy.objects.filter(date_issued__range=(start_date, end_date+timedelta(days=1)))
 
 class PolicyList(generic.ListView):
-    template_name = 'helper:policy_list.html'
+    template_name = 'helper/policy_list.html'
     context_object_name = 'policy_list'
 
-    def get_queryset(self, start_date = date.today() - timedelta(days=13), end_date=date.today()):
+    def get_queryset(self):
         """Return all policies in specified timeframe"""
-        return Policy.objects.filter(date_issued__range=(start_date, end_date+timedelta(days=1)))
+        date_from = self.kwargs['datefrom']
+        date_to = self.kwargs['dateto']
+        return Policy.objects.filter(date_issued__range=(date_from, date_to))
 
 class DetailView(generic.DetailView):
     model = Policy
