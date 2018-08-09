@@ -1,8 +1,9 @@
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404,render
 from django.urls import reverse,reverse_lazy
 from django.views import generic
 from django import forms
+from datetime import date,timedelta
 
 from .models import Policy, Vehicle, Client
 from .forms import PolicyForm, VehicleForm, ClientForm, InsurerForm
@@ -12,17 +13,17 @@ class IndexView(generic.ListView):
     template_name = 'helper/index.html'
     context_object_name = 'policy_list'
 
-    def get_queryset(self):
-        """Return 10 last issued policies"""
-        return Policy.objects.order_by('-date_issued')[:10]
+    def get_queryset(self, start_date = date.today() - timedelta(days=1), end_date=date.today()):
+        """Return all policies in specified timeframe"""
+        return Policy.objects.filter(date_issued__range=(start_date, end_date+timedelta(days=1)))
 
 class PolicyList(generic.ListView):
     template_name = 'helper:policy_list.html'
     context_object_name = 'policy_list'
 
-    def get_queryset(self):
-        """Return all policies"""
-        return Policy.objects.all()
+    def get_queryset(self, start_date = date.today() - timedelta(days=13), end_date=date.today()):
+        """Return all policies in specified timeframe"""
+        return Policy.objects.filter(date_issued__range=(start_date, end_date+timedelta(days=1)))
 
 class DetailView(generic.DetailView):
     model = Policy

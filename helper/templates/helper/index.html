@@ -2,28 +2,56 @@
 
 {% block title %}Lista polis{% endblock %}
 
+{% block scripts%}
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/jquery-ui-i18n.min.js"></script>
+<link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
+  <script>
+  $( function() {
+    var options = $.extend(
+    $.datepicker.regional["pl"],      
+    );
+$.datepicker.setDefaults(options);
+    var dateFormat = "yy-mm-dd",
+      from = $( "#from" )
+        .datepicker({
+          defaultDate: "+1w",
+          changeMonth: true,
+          numberOfMonths: 1
+        })
+        .on( "change", function() {
+          to.datepicker( "option", "minDate", getDate( this ) );
+        }),
+      to = $( "#to" ).datepicker({
+        defaultDate: "+1w",
+        changeMonth: true,
+        numberOfMonths: 1
+      })
+      .on( "change", function() {
+        from.datepicker( "option", "maxDate", getDate( this ) );
+      });
+ 
+    function getDate( element ) {
+      var date;
+      try {
+        date = $.datepicker.parseDate( dateFormat, element.value );
+      } catch( error ) {
+        date = null;
+      }
+ 
+      return date;
+    }
+  } );
+  </script>
+{% endblock %}
+
 {% block content %}
 <h2>Ostatnio wystawione</h2>
-{% if policy_list %}
-        <table>
-            <th>Numer polisy</th>
-            <th>Klient</th>
-            <th>Pojazd</th>
-            <th>Składka</th>
-            <th>Polisa od</th>
-            <th>Polisa do</th>
-        {%for policy in policy_list %}
-        <tr>
-            <td><a href="{% url 'helper:details' policy.id %}">{{ policy.number }}</a></li></td>
-            <td>{{ policy.client }}</td>
-            <td>{{ policy.vehicle }}</td>
-            <td>{{ policy.premium }}</td>
-            <td>{{ policy.date_start }}</td>
-            <td>{{ policy.date_end }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-{% else %}
-    <p>No policies.</p>
-{% endif %}
+<br>
+<label for="from">Od:</label>
+<input type="text" id="from" name="from">
+<label for="to">do:</label>
+<input type="text" id="to" name="to">
+<br>
 {% endblock %}
