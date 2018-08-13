@@ -4,6 +4,7 @@ from django.urls import reverse,reverse_lazy
 from django.views import generic
 from django import forms
 from datetime import date,timedelta
+from dal import autocomplete
 
 from .models import Policy, Vehicle, Client
 from .forms import PolicyForm, VehicleForm, ClientForm, InsurerForm
@@ -98,3 +99,19 @@ class InsurerCreate(generic.CreateView):
     form_class = InsurerForm
     template_name = 'helper/insurer_form.html'
     success_url = reverse_lazy('helper:index')
+
+class ClientAutocomplete(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        qs = Client.objects.all()
+        if self.q:
+            qs = qs.filter(name__istartswith=self.q)
+        
+        return qs
+
+class VehicleAutocomplete(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        qs = Vehicle.objects.all()
+        if self.q:
+            qs = qs.filter(reg_number__istartswith=self.q)
+        
+        return qs

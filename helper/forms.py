@@ -1,6 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from .models import Policy, Vehicle, Client, Insurer
+from dal import autocomplete
 
 class PolicyForm(ModelForm):
     class Meta:
@@ -13,6 +14,8 @@ class PolicyForm(ModelForm):
             'date_start': forms.DateInput(attrs={'class': 'datepicker'}),
             'date_end': forms.DateInput(attrs={'class': 'datepicker'}),
             'date_issued': forms.DateInput(attrs={'class': 'datepicker'}),
+            'client': autocomplete.ModelSelect2(url='helper:client-autocomplete'),
+            'vehicle': autocomplete.ModelSelect2(url='helper:vehicle-autocomplete'),
         }
         labels = {
             'number': 'Numer polisy',
