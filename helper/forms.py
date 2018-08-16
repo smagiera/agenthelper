@@ -43,6 +43,7 @@ class VehicleForm(ModelForm):
         ]
         widgets = {
             'first_registered': forms.DateInput(attrs={'class': 'datepicker'}),
+            'client': autocomplete.ModelSelect2(url='helper:client-autocomplete'),
         }
         labels = {
             'vehicle_type': 'Typ pojazdu',
