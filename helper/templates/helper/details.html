@@ -60,7 +60,14 @@
         <td>Skan 3</td>
 	<td>{% if policy.scan3 %}<a href="{{ MEDIA_URL }}{{policy.scan3.name}}"><img style="max-width: 100px; height: auto;" src="{{ MEDIA_URL }}{{policy.scan3.name}}"/></a>{% endif %}</td>
     </tr>
-
+    <tr>
+        <td>Skan 4</td>
+        <td>{% if policy.scan4 %}<a href="{{ MEDIA_URL }}{{policy.scan4.name}}"><img style="max-width: 100px; height: auto;" src="{{ MEDIA_URL }}{{policy.scan4.name}}"/></a>{% endif %}</td>
+    </tr>
+    <tr>
+        <td>Skan 5</td>
+        <td>{% if policy.scan5 %}<a href="{{ MEDIA_URL }}{{policy.scan5.name}}"><img style="max-width: 100px; height: auto;" src="{{ MEDIA_URL }}{{policy.scan5.name}}"/></a>{% endif %}</td>
+    </tr>
 </table>
 <br>
 <a href="{% url 'helper:edit' policy.id %}">Edytuj polisę</a>

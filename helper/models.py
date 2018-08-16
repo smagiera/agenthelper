@@ -100,6 +100,8 @@ class Policy(models.Model):
     scan1 = models.ImageField(blank=True)
     scan2 = models.ImageField(blank=True)
     scan3 = models.ImageField(blank=True)
+    scan4 = models.ImageField(blank=True)
+    scan5 = models.ImageField(blank=True)
 
     def get_absolute_url(self):
         return reverse('helper:details', kwargs={'pk': self.pk})
