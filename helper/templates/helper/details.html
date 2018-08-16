@@ -50,15 +50,15 @@
     </tr>
     <tr>
         <td>Skan 1</td>
-        <td>{% if policy.scan1 %}<a href="{{policy.scan1.file}}"><img src="{{policy.scan1.file}}" height="100" width="50"/></a>{% endif %}</td>
+	<td>{% if policy.scan1 %}<a href={{ MEDIA_URL }}{{ policy.scan1.name }}><img style="max-width: 100px; height: auto;" src="{{ MEDIA_URL }}{{policy.scan1.name }}"/></a>{% endif %}</td>
     </tr>
     <tr>
         <td>Skan 2</td>
-        <td>{% if policy.scan2 %}<a href="{{policy.scan2.file}}"><img src="{{policy.scan2.file}}" height="100" width="50"/></a>{% endif %}</td>
+	<td>{% if policy.scan2 %}<a href="{{ MEDIA_URL }}{{policy.scan2.name}}"><img style="max-width: 100px; height: auto;" src="{{ MEDIA_URL }}{{policy.scan2.name}}"/></a>{% endif %}</td>
     </tr>
     <tr>
         <td>Skan 3</td>
-        <td>{% if policy.scan3 %}<a href="{{policy.scan3.file}}"><img src="{{policy.scan3.file}}" height="100" width="50"/></a>{% endif %}</td>
+	<td>{% if policy.scan3 %}<a href="{{ MEDIA_URL }}{{policy.scan3.name}}"><img style="max-width: 100px; height: auto;" src="{{ MEDIA_URL }}{{policy.scan3.name}}"/></a>{% endif %}</td>
     </tr>
 
 </table>

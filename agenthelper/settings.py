@@ -34,7 +34,7 @@ SECRET_KEY = 'ueuxe*ke#^iu9bh1dj9+sp7kmm1gnymhd^_%+6mt1*1-*1*4or'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.1.50']
 
 
 # Application definition
@@ -71,6 +71,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.media',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
@@ -82,7 +83,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'agenthelper.wsgi.application'
 
-MEDIA_ROOT="media/"
+
+MEDIA_ROOT = '/srv/sites/agenthelper/media/'
+STATIC_ROOT = "/srv/sites/agenthelper/helper/static/"
+MEDIA_URL = 'http://192.168.1.50/media/'
 
 
 # Database
@@ -90,8 +94,10 @@ MEDIA_ROOT="media/"
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS': {
+            'read_default_file': '/srv/sites/agenthelper/mysql.cnf',
+            },
     }
 }
 

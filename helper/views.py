@@ -104,7 +104,7 @@ class ClientAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
         qs = Client.objects.all()
         if self.q:
-            qs = qs.filter(name__istartswith=self.q)
+            qs = qs.filter(name__icontains=self.q)
         
         return qs
 
@@ -112,6 +112,6 @@ class VehicleAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
         qs = Vehicle.objects.all()
         if self.q:
-            qs = qs.filter(reg_number__istartswith=self.q)
+            qs = qs.filter(reg_number__icontains=self.q)
         
         return qs

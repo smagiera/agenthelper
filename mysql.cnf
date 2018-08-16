@@ -1,0 +1,5 @@
+[client]
+database = agenthelper
+user = agenthelper
+password = topsecret
+default-character-set = utf8

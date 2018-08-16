@@ -18,9 +18,11 @@ from django.urls import include,path
 from django.conf import settings
 from django.urls import re_path
 from django.views.static import serve
+from django.views.generic.base import RedirectView
 
 urlpatterns = [
     path('helper/', include('helper.urls')),
+    path('', RedirectView.as_view(pattern_name='helper:index')),
     path('admin/', admin.site.urls),
 ]
 
