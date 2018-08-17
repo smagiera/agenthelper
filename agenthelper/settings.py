@@ -39,9 +39,9 @@ SECRET_KEY = 'ueuxe*ke#^iu9bh1dj9+sp7kmm1gnymhd^_%+6mt1*1-*1*4or'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if LIVEHOST:
-    DEBUG = True
-else:
     DEBUG = False
+else:
+    DEBUG = True
 
 ALLOWED_HOSTS = ['192.168.1.50', '127.0.0.1']
 
