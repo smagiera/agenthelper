@@ -10,7 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
-import os
+import os,socket
+
+#determine if we're running on production
+if socket.gethostname() == 'adax':
+    LIVEHOST = True
+else:
+    LIVEHOST = False
 
 HAYSTACK_CONNECTIONS = {
     'default': {
@@ -32,7 +38,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'ueuxe*ke#^iu9bh1dj9+sp7kmm1gnymhd^_%+6mt1*1-*1*4or'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if not LIVEHOST:
+    DEBUG = True
 
 ALLOWED_HOSTS = ['192.168.1.50', '127.0.0.1']
 
@@ -83,10 +90,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'agenthelper.wsgi.application'
 
+if LIVEHOST:
+    MEDIA_ROOT = '/srv/sites/agenthelper/media/'
+    STATIC_ROOT = "/srv/sites/agenthelper/helper/static/"
+    MEDIA_URL = 'http://192.168.1.50/media/'
 
-MEDIA_ROOT = '/home/samuel/projects/agenthelper/media/'
-STATIC_ROOT = "/home/samuel/projects/agenthelper/helper/static/"
-MEDIA_URL = 'http://127.0.0.1:8000/media/'
+else:
+    MEDIA_ROOT = '/home/samuel/projects/agenthelper/media/'
+    STATIC_ROOT = "/home/samuel/projects/agenthelper/helper/static/"
+    MEDIA_URL = 'http://127.0.0.1:8000/media/'
 
 
 # Database
@@ -95,13 +107,15 @@ MEDIA_URL = 'http://127.0.0.1:8000/media/'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'testing',
         'HOST': '192.168.1.50',
         'PORT': '3306',
         'USER': 'agenthelper',
         'PASSWORD': 'topsecret',
+        'NAME': 'testing',
     }
 }
+if LIVEHOST:
+    DATABASES['default']['NAME'] = 'agenthelper'
 
 
 # Password validation
