@@ -34,7 +34,7 @@ SECRET_KEY = 'ueuxe*ke#^iu9bh1dj9+sp7kmm1gnymhd^_%+6mt1*1-*1*4or'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.50']
+ALLOWED_HOSTS = ['192.168.1.50', '127.0.0.1']
 
 
 # Application definition
@@ -84,9 +84,9 @@ TEMPLATES = [
 WSGI_APPLICATION = 'agenthelper.wsgi.application'
 
 
-MEDIA_ROOT = '/srv/sites/agenthelper/media/'
-STATIC_ROOT = "/srv/sites/agenthelper/helper/static/"
-MEDIA_URL = 'http://192.168.1.50/media/'
+MEDIA_ROOT = '/home/samuel/projects/agenthelper/media/'
+STATIC_ROOT = "/home/samuel/projects/agenthelper/helper/static/"
+MEDIA_URL = 'http://127.0.0.1:8000/media/'
 
 
 # Database
@@ -95,9 +95,11 @@ MEDIA_URL = 'http://192.168.1.50/media/'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'OPTIONS': {
-            'read_default_file': '/srv/sites/agenthelper/mysql.cnf',
-            },
+        'NAME': 'testing',
+        'HOST': '192.168.1.50',
+        'PORT': '3306',
+        'USER': 'agenthelper',
+        'PASSWORD': 'topsecret',
     }
 }
 
