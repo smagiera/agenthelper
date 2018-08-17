@@ -1,5 +1,0 @@
-[client]
-database = testing
-user = agenthelper
-password = topsecret
-default-character-set = utf8
