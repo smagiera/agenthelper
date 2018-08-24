@@ -8,8 +8,8 @@ class Client(models.Model):
     name = models.CharField(max_length=100)
     pesel_or_regon = models.CharField(max_length=20)
     address = models.CharField(max_length=200)
-    phone_number = models.CharField(max_length=20)
-    email = models.CharField(max_length=100)
+    phone_number = models.CharField(max_length=20, blank=True)
+    email = models.CharField(max_length=100, blank=True)
 
     def get_absolute_url(self):
         return reverse('helper:client_details', kwargs={'pk': self.pk})
@@ -81,8 +81,17 @@ class Policy(models.Model):
         (1, 'gotówka'),
         (2, 'przelew')
     )
+    POLICY_TYPE_CHOICES = (
+        (1, 'komunikacja'),
+        (2, 'mieszkanie'),
+        (3, 'firma')
+    )
     number = models.CharField(max_length=20)
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    policy_type = models.IntegerField(
+        choices = POLICY_TYPE_CHOICES,
+        default = 1,
+    )
     date_issued = models.DateField()
     date_start = models.DateField()
     date_end = models.DateField()
@@ -96,7 +105,20 @@ class Policy(models.Model):
         default=1,
     )
     insurer = models.ForeignKey(Insurer, on_delete=models.CASCADE)
-    vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
+    # for motor policies
+    vehicle = models.ForeignKey(Vehicle, blank = True, null=True, on_delete=models.CASCADE)
+    isTPL = models.BooleanField(default=False)
+    isNNW = models.BooleanField(default=False)
+    isAssistance = models.BooleanField(default=False)
+    isCasco = models.BooleanField(default=False)
+    # for property policies
+    property = models.CharField(max_length=200, blank=True)
+    isTPL = models.BooleanField(default=False)
+    isBuilding = models.BooleanField(default=False)
+    isMovables = models.BooleanField(default=False)
+    isElectronics = models.BooleanField(default=False)
+    isAllRisk = models.BooleanField(default=False)
+
     scan1 = models.ImageField(blank=True)
     scan2 = models.ImageField(blank=True)
     scan3 = models.ImageField(blank=True)

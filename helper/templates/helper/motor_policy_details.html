@@ -9,10 +9,13 @@
         <td>{{ policy.number }}</td>
     </tr>
     <tr>
+        <td>Typ polisy</td>
+        <td>Komunikacja</td>
+    </tr>
+    <tr>
         <td>Ubezpieczający</td>
         <td>{{ policy.client }}</td>
     </tr>
-    {% if policy.vehicle %}
     <tr>
         <td>Marka</td>
         <td>{{ policy.vehicle.make }}</td>
@@ -29,12 +32,6 @@
         <td>Właściciel</td>
         <td>{{ policy.vehicle.owner.name }}</td>
     </tr>
-    {% else %}
-    <tr>
-        <td>Przedmiot ubezpieczenia</td>
-        <td>{{ policy.property }}</td>
-    </tr>
-    {% endif %}
     <tr>
         <td>Data rozpoczęcia</td>
         <td>{{ policy.date_start }}</td>
@@ -57,7 +54,7 @@
     </tr>
     <tr>
         <td>Skan 1</td>
-	<td>{% if policy.scan1 %}<a href={{ MEDIA_URL }}{{ policy.scan1.name }}><img style="max-width: 100px; height: auto;" src="{{ MEDIA_URL }}{{policy.scan1.name }}"/></a>{% endif %}</td>
+	<td>{% if policy.scan1 %}<a href="{{ MEDIA_URL }}{{ policy.scan1.name }}"><img style="max-width: 100px; height: auto;" src="{{ MEDIA_URL }}{{policy.scan1.name }}"/></a>{% endif %}</td>
     </tr>
     <tr>
         <td>Skan 2</td>
@@ -77,7 +74,7 @@
     </tr>
 </table>
 <br>
-<a href="{% url 'helper:edit' policy.id %}">Edytuj polisę</a>
-<a href="{% url 'helper:delete' policy.id %}">Usuń polisę</a>
+
+
 {% endblock %}
     

@@ -16,12 +16,13 @@
       
         });
 </script>
+<script src="../../static/helper/js/hide_fields.js"></script>
 {% endblock %}
 
 {% block content %}
 <form method="POST" enctype="multipart/form-data">{% csrf_token %}
-    <table border="1">
-    {{ form }}
+    <table>
+    {{ form.as_table }}
     </table>
     <input type="submit" value="Zapisz" />
     {{ form.media }}

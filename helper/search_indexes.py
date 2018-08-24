@@ -6,7 +6,8 @@ from helper.models import Policy, Client, Vehicle
 class PolicyIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.EdgeNgramField(document=True, use_template=True)
     number = indexes.CharField(model_attr='number')
-    vehicle = indexes.CharField(model_attr='vehicle')
+    vehicle = indexes.CharField(model_attr='vehicle', default='')
+    property = indexes.CharField(model_attr='property', default='')
     client = indexes.CharField(model_attr='client')
     date_issued = indexes.DateTimeField(model_attr='date_issued')
     date_start = indexes.DateTimeField(model_attr='date_start')

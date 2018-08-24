@@ -6,18 +6,24 @@
         <table>
             <th>Numer polisy</th>
             <th>Klient</th>
-            <th>Pojazd</th>
+            <th>Przedmiot ubezpieczenia</th>
             <th>Składka</th>
             <th>Polisa od</th>
             <th>Polisa do</th>
+            <th>Towarzystwo</th>
         {%for policy in policy_list %}
         <tr>
             <td><a href="{% url 'helper:details' policy.id %}">{{ policy.number }}</a></li></td>
             <td>{{ policy.client }}</td>
+            {% if policy.vehicle %}
             <td>{{ policy.vehicle }}</td>
+            {% else %}
+            <td>{{ policy.property }}</td>
+            {% endif %}
             <td>{{ policy.premium }}</td>
             <td>{{ policy.date_start }}</td>
             <td>{{ policy.date_end }}</td>
+            <td>{{ policy.insurer }}</td>
         </tr>
         {% endfor %}
     </table>

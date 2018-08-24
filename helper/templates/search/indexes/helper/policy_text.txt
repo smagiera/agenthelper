@@ -1,3 +1,4 @@
 {{ object.number }}
 {{ object.vehicle.reg_number }}
 {{ object.client }}
+{{ object.property }}

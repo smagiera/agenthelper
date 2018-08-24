@@ -7,8 +7,10 @@ class PolicyForm(ModelForm):
     class Meta:
         model = Policy
         fields = [
-        'number', 'client', 'date_start', 'date_end', 'date_issued', 'premium',
-        'payment', 'installments', 'vehicle', 'insurer', 'scan1', 'scan2', 'scan3',
+        'number', 'client', 'policy_type', 'date_start', 'date_end', 'date_issued', 'premium',
+        'payment', 'installments', 'vehicle', 'property', 'isTPL', 'isNNW', 'isAssistance',
+        'isCasco', 'isBuilding', 'isMovables', 'isElectronics', 'isAllRisk',
+        'insurer', 'scan1', 'scan2', 'scan3',
         'scan4', 'scan5',
         ]
         widgets = {
@@ -21,6 +23,7 @@ class PolicyForm(ModelForm):
         labels = {
             'number': 'Numer polisy',
             'client': 'Klient',
+            'policy_type': 'Typ polisy',
             'date_start': 'Data rozpoczęcia',
             'date_end': 'Data zakończenia',
             'date_issued': 'Data wystawienia',
@@ -28,6 +31,15 @@ class PolicyForm(ModelForm):
             'payment': 'Płatność',
             'installments': 'Raty',
             'vehicle': 'Pojazd',
+            'property': 'Przedmiot ubezpieczenia',
+            'isTPL': 'OC',
+            'isNNW': 'NNW',
+            'isAssistance': 'Assistance',
+            'isCasco': 'AC',
+            'isBuilding': 'Stałe elementy',
+            'isMovables': 'Ruchomości',
+            'isElectronics': 'Elektronika',
+            'isAllRisk': 'All Risk',
             'insurer': 'Towarzystwo',
             'scan1': 'Skan 1',
             'scan2': 'Skan 2',
