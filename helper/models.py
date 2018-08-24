@@ -113,7 +113,6 @@ class Policy(models.Model):
     isCasco = models.BooleanField(default=False)
     # for property policies
     property = models.CharField(max_length=200, blank=True)
-    isTPL = models.BooleanField(default=False)
     isBuilding = models.BooleanField(default=False)
     isMovables = models.BooleanField(default=False)
     isElectronics = models.BooleanField(default=False)

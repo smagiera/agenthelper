@@ -1,4 +1,5 @@
 {% extends "helper/base.html" %}
+{% load helper_extras %}
 
 {% block title %}Polisa nr {{ policy.number }} - szczegóły{% endblock %}
 {% block content %}
@@ -35,6 +36,18 @@
         <td>{{ policy.property }}</td>
     </tr>
     {% endif %}
+    <tr>
+        <td>Zakres</td>
+        <td>OC -{{ policy.isTPL|checkboxize }}<br>
+            NNW - {{ policy.isNNW|checkboxize }}<br>
+            Assistance - {{policy.isAssistance|checkboxize }}<br>
+            AC - {{policy.isCasco|checkboxize }}<br>
+            Stałe elementy - {{policy.isBuilding|checkboxize }}<br>
+            Ruchomości - {{policy.isMovables|checkboxize }}<br>
+            Elektronika - {{policy.isElectronics|checkboxize }}<br>
+            All Risk - {{policy.isAllRisk|checkboxize }}<br>
+        </td>
+    </tr>
     <tr>
         <td>Data rozpoczęcia</td>
         <td>{{ policy.date_start }}</td>
