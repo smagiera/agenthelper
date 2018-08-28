@@ -26,6 +26,8 @@ urlpatterns = [
     path('clients/add', views.ClientCreate.as_view(), name='client_add'),
     # insurer add view
     path('addinsurer/', views.InsurerCreate.as_view(), name='insurer_add'),
+    # stats view
+    path('stats/', views.StatisticsView.as_view(), name='statistics'),
     # autocomplete urls
     re_path(r'^client-autocomplete/$', views.ClientAutocomplete.as_view(), name='client-autocomplete'),
     re_path(r'^vehicle-autocomplete/$', views.VehicleAutocomplete.as_view(), name='vehicle-autocomplete'),
