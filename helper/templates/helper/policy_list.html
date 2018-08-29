@@ -4,6 +4,7 @@
 <div id=result>
 {% if policy_list %}
         <table>
+	    <th>Lp.</th>
             <th>Numer polisy</th>
             <th>Klient</th>
             <th>Przedmiot ubezpieczenia</th>
@@ -13,6 +14,7 @@
             <th>Towarzystwo</th>
         {%for policy in policy_list %}
         <tr>
+	    <td>{{forloop.counter}}</td>
             <td><a href="{% url 'helper:details' policy.id %}">{{ policy.number }}</a></li></td>
             <td>{{ policy.client }}</td>
             {% if policy.vehicle %}
