@@ -5,6 +5,7 @@ from django.views import generic
 from django import forms
 from datetime import date,timedelta
 from dal import autocomplete
+from django.db.models import Sum
 
 from .models import Policy, Vehicle, Client
 from .forms import PolicyForm, VehicleForm, ClientForm, InsurerForm
@@ -99,6 +100,17 @@ class InsurerCreate(generic.CreateView):
     form_class = InsurerForm
     template_name = 'helper/insurer_form.html'
     success_url = reverse_lazy('helper:index')
+
+class StatisticsView(generic.TemplateView):
+    template_name = 'helper/statistics.html'
+    context_object_name = 'context'
+
+    def count_policies(self):
+        return Policy.objects.count()
+    
+    def przypis(self):
+        return Policy.objects.aggregate(Sum('premium'))['premium__sum']
+
 
 class ClientAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
