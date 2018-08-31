@@ -82,6 +82,9 @@ class ClientList(generic.ListView):
 class ClientDetail(generic.DetailView):
     model = Client
     template_name = 'helper/client_details.html'
+    def all_his_policies(self):
+        """Returns all policies for a given client"""
+        return Policy.objects.filter(client=self.object.id)
 
 class ClientCreate(generic.CreateView):
     form_class = ClientForm

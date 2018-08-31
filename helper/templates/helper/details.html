@@ -11,7 +11,7 @@
     </tr>
     <tr>
         <td>Ubezpieczający</td>
-        <td>{{ policy.client }}</td>
+        <td><a href="{% url 'helper:client_details' policy.client.id %}">{{ policy.client }}</a></td>
     </tr>
     {% if policy.vehicle %}
     <tr>
@@ -24,11 +24,11 @@
     </tr>
     <tr>
         <td>Numer rejestracyjny</td>
-        <td>{{ policy.vehicle.reg_number }}</td>
+        <td><a href="{% url 'helper:vehicle_details' policy.vehicle.id %}">{{ policy.vehicle.reg_number }}</a></td>
     </tr>
     <tr>
         <td>Właściciel</td>
-        <td>{{ policy.vehicle.owner.name }}</td>
+        <td><a href="{% url 'helper:client_details' policy.vehicle.owner.id %}">{{ policy.vehicle.owner.name }}</a></td>
     </tr>
     {% else %}
     <tr>
@@ -70,7 +70,7 @@
     </tr>
     <tr>
         <td>Skan 1</td>
-	<td>{% if policy.scan1 %}<a href={{ MEDIA_URL }}{{ policy.scan1.name }}><img style="max-width: 100px; height: auto;" src="{{ MEDIA_URL }}{{policy.scan1.name }}"/></a>{% endif %}</td>
+	<td>{% if policy.scan1 %}<a href="{{ MEDIA_URL }}{{ policy.scan1.name }}"><img style="max-width: 100px; height: auto;" src="{{ MEDIA_URL }}{{policy.scan1.name }}"/></a>{% endif %}</td>
     </tr>
     <tr>
         <td>Skan 2</td>
