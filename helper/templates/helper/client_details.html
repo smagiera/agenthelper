@@ -27,6 +27,18 @@
     </tr>
 </table>
 <br>
+<h2>Lista polis klienta:</h2><br>
+<table>
+    <th>Numer polisy:</th>
+    <th>Data zakończenia:</th>
+{% for item in view.all_his_policies %}
+<tr>
+    <td><a href="{{item.get_absolute_url}}">{{item.number}}</a></td>
+    <td>{{item.date_end}}</td>
+</tr>
+{% endfor %}
+</table>
+<br>
 <a href="{% url 'helper:client_edit' client.id %}">Edytuj klienta</a>
 <a href="{% url 'helper:client_delete' client.id %}">Usuń klienta</a>
 {% endblock %}
