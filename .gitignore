@@ -1,3 +1,4 @@
 *.pyc
 *.jpg
 *.jpeg
+agenthelper/whoosh_index

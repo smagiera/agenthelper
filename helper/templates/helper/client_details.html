@@ -4,7 +4,7 @@
 
 {% block content %}
 <h1>Klient {{ client.name }}</h1>
-<table>
+<table class="table table-striped">
     <tr>
         <td>Imię i nazwisko / nazwa firmy</td>
         <td>{{ client.name }}</td>
@@ -28,7 +28,7 @@
 </table>
 <br>
 <h2>Lista polis klienta:</h2><br>
-<table>
+<table class="table table-striped">
     <th>Numer polisy:</th>
     <th>Data zakończenia:</th>
 {% for item in view.all_his_policies %}

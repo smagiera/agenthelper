@@ -1,38 +1,78 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="pl">
+
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{% block title %}Agent Helper{% endblock %}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'helper/admin.css' %}" />
-    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'helper/tweaks.css' %}" />
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+    crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'helper/style.css' %}" />
+  <title>{% block title %}Agent Helper{% endblock %}</title>
 </head>
+
 <body>
-    <header id="header">
-        <h1>Pomocnik Agenta</h1>
-    </header>
-        <div id="content">
-            {% block content %}{% endblock %}
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+    <div class="container-fluid">
+      <i class="fas fa-briefcase"></i>
+      <a href="{% url 'helper:index' %}" class="navbar-brand">Pomocnik Agenta</a>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id=navbarCollapse>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a href="{% url 'helper:index' %}" class="nav-link">Polisy</a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'helper:clients' %}" class="nav-link">Klienci</a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'helper:vehicles' %}" class="nav-link">Pojazdy</a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'helper:insurer_add' %}" class="nav-link">Towarzystwa</a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'helper:statistics' %}" class="nav-link">Statystyki</a>
+          </li>
+        </ul>
+        <form action="#" class="form-inline ml-auto">
+          <input type="text" class="form-control mr-2" placeholder="Szukaj">
+          <button class="btn btn-outline-success">Szukaj</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENT -->
+  <div id="content">
+    <div class="container-fluid mt-5 p-5">
+        {% block content %}{% endblock %}
+    </div>
+  </div>
+
+
+  <footer id="main-footer" class="fixed-bottom bg-dark text-muted">
+    <div class="container">
+      <div class="row">
+        <div class="col text-center">
+          <p>Copyright &copy; <span id="year"></span> <a href="https://smagiera.pl" class="text-muted">Samuel Magiera</a></p>
         </div>
-        <div id="sidebar">
-            {% block sidebar %}
-            <b>Nawigacja</b>
-            <ul>
-                <li><a href="{% url 'helper:index' %}">Strona główna</a></li>
-                <li><a href="{% url 'helper:clients' %}">Lista klientów</a></li>
-                <li><a href="{% url 'helper:vehicles' %}">Lista pojazdów</a></li>
-                <li><a href="{% url 'helper:create' %}">Dodaj polisę</a></li>
-                <li><a href="{% url 'helper:vehicle_add' %}">Dodaj pojazd</a></li>
-                <li><a href="{% url 'helper:client_add' %}">Dodaj klienta</a></li>
-                <li><a href="{% url 'helper:insurer_add' %}">Dodaj TU</a></li>
-                <li><a href="/helper/search">Szukaj</a></li>
-                <li><a href="{% url 'helper:statistics' %}">Statystyki</a></li>
-            </ul>
-            {% endblock %}
-        </div>
-        {% block scripts %}{% endblock %}
+      </div>
+    </div>
+  </footer>
+
+  {% block scripts %}{% endblock %}
+
+
+  <script>
+    // Get the current year for the copyright
+    $('#year').text(new Date().getFullYear());
+  </script>
 </body>
+
 </html>
