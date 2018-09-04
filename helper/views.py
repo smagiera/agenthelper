@@ -7,7 +7,7 @@ from datetime import date,timedelta
 from dal import autocomplete
 from django.db.models import Sum
 
-from .models import Policy, Vehicle, Client
+from .models import Policy, Vehicle, Client, Insurer
 from .forms import PolicyForm, VehicleForm, ClientForm, InsurerForm
 
 
@@ -103,6 +103,15 @@ class InsurerCreate(generic.CreateView):
     form_class = InsurerForm
     template_name = 'helper/insurer_form.html'
     success_url = reverse_lazy('helper:index')
+
+class InsurerList(generic.ListView):
+    template_name = 'helper:insurer_list.html'
+    context_object_name = 'insurer_list'
+
+    def get_queryset(self):
+        """Return all insurers"""
+        return Insurer.objects.all()
+
 
 class StatisticsView(generic.TemplateView):
     template_name = 'helper/statistics.html'

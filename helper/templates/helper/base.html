@@ -34,14 +34,14 @@
             <a href="{% url 'helper:vehicles' %}" class="nav-link">Pojazdy</a>
           </li>
           <li class="nav-item">
-            <a href="{% url 'helper:insurer_add' %}" class="nav-link">Towarzystwa</a>
+            <a href="{% url 'helper:insurer_list' %}" class="nav-link">Towarzystwa</a>
           </li>
           <li class="nav-item">
             <a href="{% url 'helper:statistics' %}" class="nav-link">Statystyki</a>
           </li>
         </ul>
-        <form action="#" class="form-inline ml-auto">
-          <input type="text" class="form-control mr-2" placeholder="Szukaj">
+        <form method="GET" action="{% url 'helper:haystack_search' %}" class="form-inline ml-auto">
+          <input type="text" name="q" class="form-control mr-2" placeholder="Szukaj">
           <button class="btn btn-outline-success">Szukaj</button>
         </form>
       </div>

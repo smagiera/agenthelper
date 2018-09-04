@@ -9,3 +9,7 @@ def checkboxize(value):
         return 'TAK'
     else:
         return 'NIE'
+
+@register.filter(is_safe=True)
+def addclass(value, arg):
+    return value.as_widget(attrs={'class': arg})

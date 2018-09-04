@@ -39,6 +39,6 @@
 {% endfor %}
 </table>
 <br>
-<a href="{% url 'helper:client_edit' client.id %}">Edytuj klienta</a>
-<a href="{% url 'helper:client_delete' client.id %}">Usuń klienta</a>
+<a href="{% url 'helper:client_edit' client.id %}" class="btn btn-primary">Edytuj klienta</a>
+<a href="{% url 'helper:client_delete' client.id %}" class="btn btn-danger">Usuń klienta</a>
 {% endblock %}
