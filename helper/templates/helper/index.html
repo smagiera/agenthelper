@@ -2,6 +2,25 @@
 
 {% block title %}Lista polis{% endblock %}
 
+
+
+{% block content %}
+
+<a href="{% url 'helper:create' %}" class="btn btn-block btn-success">Dodaj polisę</a>
+
+<div class="bg-light border rounded border-light">
+<h2 class="mt-2">Ostatnio wystawione</h2>
+<br>
+<label for="from">Od:</label>
+<input type="text" id="from" name="from">
+<label for="to">do:</label>
+<input type="text" id="to" name="to">
+<br>
+
+<div id=results></div>
+</div>
+{% endblock %}
+
 {% block scripts%}
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -53,7 +72,10 @@
  
       return date;
     }
-    from.datepicker('setDate', new Date().getTime() - (14 * 24 * 60 * 60 * 1000));
+    const dateOffset = (24*60*60*1000) * 14; //14 days
+    let date1 = new Date();
+    date1.setTime(date1.getTime() - dateOffset);
+    from.datepicker('setDate', date1);
     to.datepicker('setDate', new Date());
   } );
   </script>
@@ -63,16 +85,4 @@
 	});
  </script>
 
-{% endblock %}
-
-{% block content %}
-<h2>Ostatnio wystawione</h2>
-<br>
-<label for="from">Od:</label>
-<input type="text" id="from" name="from">
-<label for="to">do:</label>
-<input type="text" id="to" name="to">
-<br>
-
-<div id=results></div>
 {% endblock %}

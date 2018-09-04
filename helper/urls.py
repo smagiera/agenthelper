@@ -4,7 +4,7 @@ from django.views.generic.base import RedirectView
 
 app_name = 'helper'
 urlpatterns = [
-    re_path(r'^search/', include('haystack.urls'), name='search'),
+    path('search/', include('haystack.urls')),
     # policy views
     path('', views.IndexView.as_view(), name='index'),
     path('<int:pk>/details/', views.DetailView.as_view(), name='details'),
@@ -25,7 +25,8 @@ urlpatterns = [
     path('clients/<int:pk>/delete', views.ClientDelete.as_view(), name='client_delete'),
     path('clients/add', views.ClientCreate.as_view(), name='client_add'),
     # insurer add view
-    path('addinsurer/', views.InsurerCreate.as_view(), name='insurer_add'),
+    path('insurers/', views.InsurerList.as_view(), name='insurer_list'),
+    path('insurers/add/', views.InsurerCreate.as_view(), name='insurer_add'),
     # stats view
     path('stats/', views.StatisticsView.as_view(), name='statistics'),
     # autocomplete urls

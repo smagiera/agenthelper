@@ -3,8 +3,13 @@
 {% block title %}Lista klientów{% endblock %}
 
 {% block content %}
+
+<a href="{% url 'helper:client_add' %}" class="btn btn-block btn-success">Dodaj klienta</a>
+
+<div class="bg-light border rounded border-light">
+    <h2 class="mt-2">Lista klientów</h2>
 {% if client_list %}
-    <table>
+    <table class="table table-striped">
         <th>Imię i nazwisko/Nazwa firmy</th>
         <th>Adres</th>
         <th>Telefon</th>
@@ -15,7 +20,9 @@
             <td>{{ client.phone_number }}</td>
         </tr>
         {% endfor %}
+    </table>
 {% else %}
     <p>Brak klientów.</p>
 {% endif %}
+</div>
 {% endblock %}

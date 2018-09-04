@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{% block title %}Agent Helper{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'helper/admin.css' %}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'helper/tweaks.css' %}" />
+    
+</head>
+<body>
+    <header id="header">
+        <h1>Pomocnik Agenta</h1>
+    </header>
+        <div id="content">
+            {% block content %}{% endblock %}
+        </div>
+        <div id="sidebar">
+            {% block sidebar %}
+            <b>Nawigacja</b>
+            <ul>
+                <li><a href="{% url 'helper:index' %}">Strona główna</a></li>
+                <li><a href="{% url 'helper:clients' %}">Lista klientów</a></li>
+                <li><a href="{% url 'helper:vehicles' %}">Lista pojazdów</a></li>
+                <li><a href="{% url 'helper:create' %}">Dodaj polisę</a></li>
+                <li><a href="{% url 'helper:vehicle_add' %}">Dodaj pojazd</a></li>
+                <li><a href="{% url 'helper:client_add' %}">Dodaj klienta</a></li>
+                <li><a href="{% url 'helper:insurer_add' %}">Dodaj TU</a></li>
+                <li><a href="/helper/search">Szukaj</a></li>
+                <li><a href="{% url 'helper:statistics' %}">Statystyki</a></li>
+            </ul>
+            {% endblock %}
+        </div>
+        {% block scripts %}{% endblock %}
+</body>
+</html>

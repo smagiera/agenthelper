@@ -4,7 +4,7 @@
 {% block title %}Polisa nr {{ policy.number }} - szczegóły{% endblock %}
 {% block content %}
 <h1>Polisa numer {{ policy.number }}</h1>
-<table>
+<table class="table table-striped">
     <tr>
         <td>Numer polisy</td>
         <td>{{ policy.number }}</td>
@@ -90,7 +90,7 @@
     </tr>
 </table>
 <br>
-<a href="{% url 'helper:edit' policy.id %}">Edytuj polisę</a>
-<a href="{% url 'helper:delete' policy.id %}">Usuń polisę</a>
+<a href="{% url 'helper:edit' policy.id %}" class="btn btn-primary">Edytuj polisę</a>
+<a href="{% url 'helper:delete' policy.id %}" class="btn btn-danger">Usuń polisę</a>
 {% endblock %}
     

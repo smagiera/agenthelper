@@ -3,10 +3,10 @@
 {% block title %}Usuń polisę{{ policy.number }}{% endblock %}
 
 {% block content %}
-<p>Czy jesteś pewien, że chcesz usunąć polisę {{ policy.number }}?<br>
-    Aby anulować, kliknij wstecz.
-</p>
+<p>Czy jesteś pewien, że chcesz usunąć polisę {{ policy.number }}?</p>
+
 <form method="POST">{% csrf_token %}
-    <input type="submit" value="Usuń"/>
+    <input type="submit" class="btn btn-danger" value="Usuń"/>
+    <a href="javascript:history.back()" class="btn btn-primary">Anuluj</a>
 </form>
 {% endblock %}

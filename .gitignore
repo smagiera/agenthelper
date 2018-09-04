@@ -1,4 +1,8 @@
 *.pyc
 *.jpg
 *.jpeg
+<<<<<<< HEAD
 agenthelper/whoosh_index
+=======
+agenthelper/whoosh_index
+>>>>>>> testing

@@ -1,12 +1,11 @@
 {% extends "helper/base.html" %}
 
-{% block title %}Usuń pojazd{{ vehicle.number }}{% endblock %}
+{% block title %}Usuń pojazd{{ vehicle.reg_number }}{% endblock %}
 
 {% block content %}
-<p>Czy jesteś pewien, że chcesz usunąć pojazd {{ vehicle.number }}?<br>
-    Aby anulować, kliknij wstecz.
-</p>
+<p>Czy jesteś pewien, że chcesz usunąć pojazd {{ vehicle.reg_number }}?</p>
 <form method="POST">{% csrf_token %}
-    <input type="submit" value="Usuń"/>
+    <input type="submit" class="btn btn-danger" value="Usuń"/>
+    <a href="javascript:history.back()" class="btn btn-primary">Anuluj</a>
 </form>
 {% endblock %}

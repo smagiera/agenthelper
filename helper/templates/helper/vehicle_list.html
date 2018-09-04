@@ -3,8 +3,13 @@
 {% block title %}Lista pojazdów{% endblock %}
 
 {% block content %}
+
+<a href="{% url 'helper:vehicle_add' %}" class="btn btn-block btn-success">Dodaj pojazd</a>
+
+<div class="bg-light border rounded border-light">
+<h2 class="mt-2">Lista pojazdów</h2>
 {% if vehicle_list %}
-    <table>
+    <table class="table table-striped">
         <th>Numer rejestracyjny</th>
         <th>Marka</th>
         <th>Model</th>
@@ -21,4 +26,5 @@
 {% else %}
     <p>Brak pojazdów.</p>
 {% endif %}
+</div>
 {% endblock %}

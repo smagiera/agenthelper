@@ -1,0 +1,9 @@
+.navbar {
+  border-bottom: #008ed6 3px solid;
+  opacity: 0.8;
+}
+
+.navbar .fas {
+  color: orange;
+  padding: 5px;
+}

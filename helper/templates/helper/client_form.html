@@ -1,12 +1,13 @@
 {% extends "helper/base.html" %}
+{% load crispy_forms_tags %}
 
 {% block title %}Dodaj/edytuj klienta{{ policy.number }}{% endblock %}
 
 {% block content %}
 <form method="POST">{% csrf_token %}
-    <table>
-    {{ form.as_table }}
-    </table>
-    <input type="submit" value="Zapisz" />
+    <div class="container">
+    {{ form|crispy }}
+    <input type="submit" class="btn btn-primary" value="Zapisz" />
+    </div>
 </form>
 {% endblock %}

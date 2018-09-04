@@ -3,7 +3,7 @@
 {% block title %}Pojazd {{vehicle.reg_number}} - szczegóły{% endblock %}
 {% block content %}
 <h1>Pojazd {{vehicle.reg_number}}</h1>
-<table>
+<table class="table table-striped">
     <tr>
         <td>Typ</td>
         <td>{{ vehicle.vehicle_type }}</td>
@@ -41,7 +41,7 @@
         <td>{{ vehicle.seats }}</td>
     </tr>
     <tr>
-        <td>Data pierwszej rejetracji</td>
+        <td>Data pierwszej rejestracji</td>
         <td>{{ vehicle.first_registered }}</td>
     </tr>
     <tr>
@@ -50,6 +50,6 @@
     </tr>
 </table>
 <br>
-<a href="{% url 'helper:vehicle_edit' vehicle.id %}">Edytuj pojazd</a>
-<a href="{% url 'helper:vehicle_delete' vehicle.id %}">Usuń pojazd</a>
+<a href="{% url 'helper:vehicle_edit' vehicle.id %}" class="btn btn-primary">Edytuj pojazd</a>
+<a href="{% url 'helper:vehicle_delete' vehicle.id %}" class="btn btn-danger">Usuń pojazd</a>
 {% endblock %}
