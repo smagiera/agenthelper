@@ -34,7 +34,7 @@ class VehicleIndex(indexes.SearchIndex, indexes.Indexable):
 class ClientIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.EdgeNgramField(document=True, use_template=True)
     name = indexes.CharField(model_attr='name')
-    id = indexes.CharField(model_attr='pesel_or_regon')
+    client_id = indexes.CharField(model_attr='pesel_or_regon')
 
     def get_model(self):
         return Client
