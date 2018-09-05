@@ -1,28 +1,29 @@
 {% extends 'helper/base.html' %}
+{% load crispy_forms_tags %}
 
 {% block content %}
     <h2>Wyszukiwanie</h2>
 
     <form method="get" action=".">
-        <table>
-            {{ form.as_table }}
+        <div class="container mt-2">
+            {{ form|crispy }}
             <tr>
                 <td>&nbsp;</td>
                 <td>
-                    <input type="submit" value="Szukaj">
+                    <input type="submit" class="btn btn-primary" value="Szukaj">
                 </td>
             </tr>
-        </table>
+            
 
         {% if query %}
-            <h3>Wynik wyszukiwania</h3>
+            <h3 class="mt-5">Wynik wyszukiwania</h3>
 
             {% for result in page.object_list %}
                 <p>
                     <a href="{{ result.object.get_absolute_url }}">{{ result.object }}</a>
                 </p>
             {% empty %}
-                <p>No results found.</p>
+                <p>Brak wyników.</p>
             {% endfor %}
 
             {% if page.has_previous or page.has_next %}
@@ -36,4 +37,5 @@
             {# Show some example queries to run, maybe query syntax, something else? #}
         {% endif %}
     </form>
+</div>
 {% endblock %}
