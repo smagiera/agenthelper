@@ -77,7 +77,7 @@ class ClientList(generic.ListView):
 
     def get_queryset(self):
         """Return all clients"""
-        return Client.objects.all()
+        return Client.objects.order_by('name')
 
 class ClientDetail(generic.DetailView):
     model = Client
