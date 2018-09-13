@@ -5,6 +5,8 @@ from django.urls import reverse
 # Create your models here.
 
 class Client(models.Model):
+    class Meta:
+        unique_together = ("name", "pesel_or_regon")
     name = models.CharField(max_length=100)
     pesel_or_regon = models.CharField(max_length=20)
     address = models.CharField(max_length=200)

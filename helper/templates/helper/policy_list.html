@@ -3,7 +3,9 @@
 {% block content %}
 <div id=result>
 {% if policy_list %}
-        <table class="table table-striped">
+        <table id="policy_list" class="table table-striped">
+            <thead>
+                <tr>
             <th>Lp.</th>
             <th>Numer polisy</th>
             <th>Klient</th>
@@ -12,6 +14,9 @@
             <th>Polisa od</th>
             <th>Polisa do</th>
             <th>Towarzystwo</th>
+            </tr>
+            </thead>
+            <tbody>
         {%for policy in policy_list %}
         <tr>
 	    <td>{{forloop.counter}}</td>
@@ -28,6 +33,7 @@
             <td>{{ policy.insurer }}</td>
         </tr>
         {% endfor %}
+    </tbody>
     </table>
 {% else %}
     <p>Brak polis we wskazanym okresie.</p>

@@ -1,5 +1,5 @@
 {% extends "helper/base.html" %}
-
+{% load static %}
 {% block title %}Lista polis{% endblock %}
 
 
@@ -26,63 +26,13 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/jquery-ui-i18n.min.js"></script>
 <link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
-  <script>
-    function update() {
-      var date1 = document.getElementById("from").value;
-      var date2 = document.getElementById("to").value;
-        $('#results').load("policies/"+date1+"&"+date2+" #result");
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.18/b-1.5.2/b-html5-1.5.2/b-print-1.5.2/r-2.2.2/datatables.min.css"/>
+ 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.18/b-1.5.2/b-html5-1.5.2/b-print-1.5.2/r-2.2.2/datatables.min.js"></script>
 
-        // it's important to return false from the click
-        // cancel the default action
-        // execute the AJAX request
-        return false;
-    }
-  $( function() {
-    $.datepicker.setDefaults($.datepicker.regional['pl']);
-      from = $( "#from" )
-        .datepicker({
-          dateFormat: "yy-mm-dd",
-          defaultDate: "+1w",
-          changeMonth: true,
-          numberOfMonths: 1,
-          defaultDate: new Date(),
-        })
-        .on( "change", function() {
-          to.datepicker( "option", "minDate", getDate( this ) );
-          update();
-        }),
-      to = $( "#to" ).datepicker({
-        dateFormat: "yy-mm-dd",
-        defaultDate: "+1w",
-        changeMonth: true,
-        numberOfMonths: 1,
-      })
-      .on( "change", function() {
-        from.datepicker( "option", "maxDate", getDate( this ) );
-        update();
-      });
- 
-    function getDate( element ) {
-      var date;
-      try {
-        date = $.datepicker.parseDate( dateFormat, element.value );
-      } catch( error ) {
-        date = null;
-      }
- 
-      return date;
-    }
-    const dateOffset = (24*60*60*1000) * 14; //14 days
-    let date1 = new Date();
-    date1.setTime(date1.getTime() - dateOffset);
-    from.datepicker('setDate', date1);
-    to.datepicker('setDate', new Date());
-  } );
-  </script>
-  <script>
-	$(document).ready(function(){
-		update();
-	});
- </script>
+<script src="{% static 'helper/js/ajax.js' %}"></script>
+<script src="{% static 'helper/js/datepicker_setup.js' %}"></script>
 
 {% endblock %}

@@ -89,6 +89,11 @@ class ClientDetail(generic.DetailView):
 class ClientCreate(generic.CreateView):
     form_class = ClientForm
     template_name = 'helper/client_form.html'
+    
+    def clean(self):
+        if self._meta.model.objects.filter(**self.cleaned_data).count() > 0:
+            raise forms.ValidationError('Client already exists')
+        return self.cleaned_data
 
 class ClientUpdate(generic.UpdateView):
     model = Client
