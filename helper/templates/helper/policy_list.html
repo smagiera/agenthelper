@@ -28,8 +28,8 @@
             <td>{{ policy.property }}</td>
             {% endif %}
             <td>{{ policy.premium }}</td>
-            <td>{{ policy.date_start }}</td>
-            <td>{{ policy.date_end }}</td>
+            <td>{{ policy.date_start|date:"Y-m-d" }}</td>
+            <td>{{ policy.date_end|date:"Y-m-d" }}</td>
             <td>{{ policy.insurer }}</td>
         </tr>
         {% endfor %}
