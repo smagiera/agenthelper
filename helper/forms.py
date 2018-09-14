@@ -78,13 +78,14 @@ class ClientForm(ModelForm):
     class Meta:
         model = Client
         fields = [
-            'name', 'pesel_or_regon', 'address', 'phone_number', 'email',
+            'name', 'pesel_or_regon', 'address', 'phone_number', 'email', 'gdpr'
         ]
         labels = {
             'name': 'Imię i nazwisko/Nazwa firmy',
             'pesel_or_regon': 'PESEL/REGON',
             'address': 'Adres',
             'phone_number': 'Numer telefonu',
+            'gdpr': 'Zgoda na przetwarzanie danych',
         }
 
 class InsurerForm(ModelForm):

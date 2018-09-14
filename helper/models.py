@@ -10,6 +10,7 @@ class Client(models.Model):
     address = models.CharField(max_length=200)
     phone_number = models.CharField(max_length=20, blank=True)
     email = models.CharField(max_length=100, blank=True)
+    gdpr = models.ImageField(blank=True)
 
     def get_absolute_url(self):
         return reverse('helper:client_details', kwargs={'pk': self.pk})
