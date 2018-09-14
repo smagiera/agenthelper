@@ -57,7 +57,7 @@ class Vehicle(models.Model):
     make = models.CharField(max_length=50)
     model = models.CharField(max_length=50)
     reg_number = models.CharField(max_length=10)
-    vin = models.CharField(max_length=17)
+    vin = models.CharField(max_length=17, unique=True)
     manufacture_year = models.IntegerField()
     capacity = models.IntegerField()
     power = models.IntegerField()
