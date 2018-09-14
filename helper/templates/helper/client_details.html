@@ -25,6 +25,10 @@
         <td>Email</td>
         <td>{{ client.email }}</td>
     </tr>
+    <tr>
+        <td>Zgoda na przetwarzanie danych</td>
+	<td>{% if client.gdpr %}<a href="{{ MEDIA_URL }}{{ client.gdpr.name }}"><img style="max-width: 100px; height: auto;" src="{{ MEDIA_URL }}{{client.gdpr.name }}"/></a>{% endif %}</td>
+    </tr>
 </table>
 <br>
 <h2>Lista polis klienta:</h2><br>
