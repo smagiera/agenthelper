@@ -118,6 +118,9 @@ DATABASES = {
         'USER': 'agenthelper',
         'PASSWORD': 'topsecret',
         'NAME': 'testing',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+        }
     }
 }
 if LIVEHOST:

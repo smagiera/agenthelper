@@ -5,10 +5,8 @@ from django.urls import reverse
 # Create your models here.
 
 class Client(models.Model):
-    class Meta:
-        unique_together = ("name", "pesel_or_regon")
     name = models.CharField(max_length=100)
-    pesel_or_regon = models.CharField(max_length=20)
+    pesel_or_regon = models.CharField(max_length=20, unique=True)
     address = models.CharField(max_length=200)
     phone_number = models.CharField(max_length=20, blank=True)
     email = models.CharField(max_length=100, blank=True)
@@ -90,7 +88,7 @@ class Policy(models.Model):
         (4, 'podróżne'),
         (5, 'życie')
     )
-    number = models.CharField(max_length=20)
+    number = models.CharField(max_length=20, unique=True)
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     policy_type = models.IntegerField(
         choices = POLICY_TYPE_CHOICES,
