@@ -8,7 +8,7 @@ class PolicyForm(ModelForm):
         model = Policy
         fields = [
         'number', 'client', 'policy_type', 'date_start', 'date_end', 'date_issued', 'premium',
-        'payment', 'installments', 'vehicle', 'property', 'isTPL', 'isNNW', 'isAssistance',
+        'payment', 'installments', 'policy_value', 'vehicle', 'property', 'isTPL', 'isNNW', 'isAssistance',
         'isCasco', 'isBuilding', 'isMovables', 'isElectronics', 'isAllRisk',
         'insurer', 'scan1', 'scan2', 'scan3',
         'scan4', 'scan5',
@@ -30,6 +30,7 @@ class PolicyForm(ModelForm):
             'premium': 'Składka',
             'payment': 'Płatność',
             'installments': 'Raty',
+            'policy_value': 'Suma ubezpieczenia',
             'vehicle': 'Pojazd',
             'property': 'Przedmiot ubezpieczenia',
             'isTPL': 'OC',

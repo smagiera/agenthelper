@@ -86,7 +86,9 @@ class Policy(models.Model):
     POLICY_TYPE_CHOICES = (
         (1, 'komunikacja'),
         (2, 'mieszkanie'),
-        (3, 'firma')
+        (3, 'firma'),
+        (4, 'podróżne'),
+        (5, 'życie')
     )
     number = models.CharField(max_length=20)
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
@@ -107,6 +109,7 @@ class Policy(models.Model):
         default=1,
     )
     insurer = models.ForeignKey(Insurer, on_delete=models.CASCADE)
+    policy_value = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     # for motor policies
     vehicle = models.ForeignKey(Vehicle, blank = True, null=True, on_delete=models.CASCADE)
     isTPL = models.BooleanField(default=False)
