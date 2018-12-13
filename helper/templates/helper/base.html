@@ -44,6 +44,9 @@
           <input type="text" name="q" class="form-control mr-2" placeholder="Szukaj">
           <button class="btn btn-outline-success">Szukaj</button>
         </form>
+        {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}" class="ml-3 font-weight-bold btn btn-warning">Wyloguj użytkownika: {{user.username}}</a>
+        {% endif %}
       </div>
     </div>
   </nav>

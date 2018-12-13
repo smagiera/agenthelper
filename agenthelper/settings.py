@@ -54,7 +54,7 @@ INSTALLED_APPS = [
     'dal',
     'dal_select2',
     'helper.apps.HelperConfig',
-    'django.contrib.admin',
+#    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -185,3 +185,5 @@ LOGGING = {
         },
     },
 }
+
+LOGIN_REDIRECT_URL = 'helper:index'

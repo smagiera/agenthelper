@@ -1,5 +1,5 @@
 from django.http import HttpResponseRedirect, HttpResponse
-from django.shortcuts import get_object_or_404,render
+from django.shortcuts import get_object_or_404,render, redirect
 from django.urls import reverse,reverse_lazy
 from django.views import generic
 from django import forms
@@ -9,9 +9,12 @@ from django.db.models import Sum
 
 from .models import Policy, Vehicle, Client, Insurer
 from .forms import PolicyForm, VehicleForm, ClientForm, InsurerForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login, authenticate
 
 
-class IndexView(generic.ListView):
+class IndexView(LoginRequiredMixin, generic.ListView):
     template_name = 'helper/index.html'
     context_object_name = 'policy_list'
 
@@ -19,7 +22,7 @@ class IndexView(generic.ListView):
         """Return all policies in specified timeframe"""
         return Policy.objects.filter(date_issued__range=(start_date, end_date+timedelta(days=1)))
 
-class PolicyList(generic.ListView):
+class PolicyList(LoginRequiredMixin, generic.ListView):
     template_name = 'helper/policy_list.html'
     context_object_name = 'policy_list'
 
@@ -29,24 +32,24 @@ class PolicyList(generic.ListView):
         date_to = self.kwargs['dateto']
         return Policy.objects.filter(date_issued__range=(date_from, date_to))
 
-class DetailView(generic.DetailView):
+class DetailView(LoginRequiredMixin, generic.DetailView):
     model = Policy
     template_name = 'helper/details.html'
 
-class PolicyCreate(generic.CreateView):
+class PolicyCreate(LoginRequiredMixin, generic.CreateView):
     form_class = PolicyForm
     template_name = 'helper/policy_form.html'
 
-class PolicyUpdate(generic.UpdateView):
+class PolicyUpdate(LoginRequiredMixin, generic.UpdateView):
     model = Policy
     form_class = PolicyForm
     template_name = 'helper/policy_form.html'
 
-class PolicyDelete(generic.DeleteView):
+class PolicyDelete(LoginRequiredMixin, generic.DeleteView):
     model = Policy
     success_url = reverse_lazy('helper:index')
 
-class VehicleList(generic.ListView):
+class VehicleList(LoginRequiredMixin, generic.ListView):
     template_name = 'helper:vehicle_list.html'
     context_object_name = 'vehicle_list'
 
@@ -54,24 +57,24 @@ class VehicleList(generic.ListView):
         """Return all vehicles"""
         return Vehicle.objects.all()
 
-class VehicleDetail(generic.DetailView):
+class VehicleDetail(LoginRequiredMixin, generic.DetailView):
     model = Vehicle
     template_name = 'helper/vehicle_details.html'
 
-class VehicleCreate(generic.CreateView):
+class VehicleCreate(LoginRequiredMixin, generic.CreateView):
     form_class = VehicleForm
     template_name = 'helper/vehicle_form.html'
 
-class VehicleUpdate(generic.UpdateView):
+class VehicleUpdate(LoginRequiredMixin, generic.UpdateView):
     model = Vehicle
     form_class = VehicleForm
     template_name = 'helper/vehicle_form.html'
 
-class VehicleDelete(generic.DeleteView):
+class VehicleDelete(LoginRequiredMixin, generic.DeleteView):
     model = Vehicle
     success_url = reverse_lazy('helper:vehicles')
 
-class ClientList(generic.ListView):
+class ClientList(LoginRequiredMixin, generic.ListView):
     template_name = 'helper:client_list.html'
     context_object_name = 'client_list'
 
@@ -79,14 +82,14 @@ class ClientList(generic.ListView):
         """Return all clients"""
         return Client.objects.order_by('name')
 
-class ClientDetail(generic.DetailView):
+class ClientDetail(LoginRequiredMixin, generic.DetailView):
     model = Client
     template_name = 'helper/client_details.html'
     def all_his_policies(self):
         """Returns all policies for a given client"""
         return Policy.objects.filter(client=self.object.id)
 
-class ClientCreate(generic.CreateView):
+class ClientCreate(LoginRequiredMixin, generic.CreateView):
     form_class = ClientForm
     template_name = 'helper/client_form.html'
     
@@ -95,21 +98,21 @@ class ClientCreate(generic.CreateView):
             raise forms.ValidationError('Client already exists')
         return self.cleaned_data
 
-class ClientUpdate(generic.UpdateView):
+class ClientUpdate(LoginRequiredMixin, generic.UpdateView):
     model = Client
     form_class = ClientForm
     template_name = 'helper/client_form.html'
 
-class ClientDelete(generic.DeleteView):
+class ClientDelete(LoginRequiredMixin, generic.DeleteView):
     model = Client
     success_url = reverse_lazy('helper:clients')
 
-class InsurerCreate(generic.CreateView):
+class InsurerCreate(LoginRequiredMixin, generic.CreateView):
     form_class = InsurerForm
     template_name = 'helper/insurer_form.html'
     success_url = reverse_lazy('helper:index')
 
-class InsurerList(generic.ListView):
+class InsurerList(LoginRequiredMixin, generic.ListView):
     template_name = 'helper:insurer_list.html'
     context_object_name = 'insurer_list'
 
@@ -118,7 +121,7 @@ class InsurerList(generic.ListView):
         return Insurer.objects.all()
 
 
-class StatisticsView(generic.TemplateView):
+class StatisticsView(LoginRequiredMixin, generic.TemplateView):
     template_name = 'helper/statistics.html'
     context_object_name = 'context'
 
@@ -144,3 +147,17 @@ class VehicleAutocomplete(autocomplete.Select2QuerySetView):
             qs = qs.filter(reg_number__icontains=self.q)
         
         return qs
+
+
+class SignupView(generic.FormView):
+    template_name = 'helper/signup.html'
+    form_class = UserCreationForm
+    
+    def form_valid(self, form):
+        form.save()
+        username = form.cleaned_data.get('username')
+        raw_password = form.cleaned_data.get('password1')
+        user = authenticate(username=username, password=raw_password)
+        login(self.request, user)
+        return redirect('helper:index')
+
