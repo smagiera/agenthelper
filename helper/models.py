@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 
 # Create your models here.
@@ -121,6 +122,8 @@ class Policy(models.Model):
     isMovables = models.BooleanField(default=False)
     isElectronics = models.BooleanField(default=False)
     isAllRisk = models.BooleanField(default=False)
+
+    agent = models.ForeignKey(User, on_delete=models.CASCADE)
 
     scan1 = models.ImageField(blank=True)
     scan2 = models.ImageField(blank=True)

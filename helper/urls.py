@@ -11,7 +11,8 @@ urlpatterns = [
     path('add/', views.PolicyCreate.as_view(), name='create'),
     path('<int:pk>/edit', views.PolicyUpdate.as_view(), name='edit'),
     path('<int:pk>/delete', views.PolicyDelete.as_view(), name='delete'),
-    re_path(r'^policies/(?P<datefrom>[0-9]{4}-[0-9]{2}-[0-9]{2})&(?P<dateto>[0-9]{4}-[0-9]{2}-[0-9]{2})', views.PolicyList.as_view(), name='all_policies'),
+    re_path(r'^policies/(?P<datefrom>[0-9]{4}-[0-9]{2}-[0-9]{2})&(?P<dateto>[0-9]{4}-[0-9]{2}-[0-9]{2})', views.PolicyList.as_view(), name='policies'),
+    re_path(r'^all_policies/(?P<datefrom>[0-9]{4}-[0-9]{2}-[0-9]{2})&(?P<dateto>[0-9]{4}-[0-9]{2}-[0-9]{2})', views.AllPolicyList.as_view(), name='all_policies'),
     # vehicle views
     path('vehicles/', views.VehicleList.as_view(), name='vehicles'),
     path('vehicles/<int:pk>/', views.VehicleDetail.as_view(), name='vehicle_details'),

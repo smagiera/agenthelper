@@ -30,6 +30,16 @@ class PolicyList(LoginRequiredMixin, generic.ListView):
         """Return all policies in specified timeframe"""
         date_from = self.kwargs['datefrom']
         date_to = self.kwargs['dateto']
+        return Policy.objects.filter(date_issued__range=(date_from, date_to), agent=self.request.user)
+
+class AllPolicyList(LoginRequiredMixin, generic.ListView):
+    template_name = 'helper/policy_list.html'
+    context_object_name = 'policy_list'
+
+    def get_queryset(self):
+        """Return all policies in specified timeframe"""
+        date_from = self.kwargs['datefrom']
+        date_to = self.kwargs['dateto']
         return Policy.objects.filter(date_issued__range=(date_from, date_to))
 
 class DetailView(LoginRequiredMixin, generic.DetailView):
@@ -39,6 +49,10 @@ class DetailView(LoginRequiredMixin, generic.DetailView):
 class PolicyCreate(LoginRequiredMixin, generic.CreateView):
     form_class = PolicyForm
     template_name = 'helper/policy_form.html'
+    def get_initial(self):
+        return {
+            'agent': self.request.user
+        }
 
 class PolicyUpdate(LoginRequiredMixin, generic.UpdateView):
     model = Policy

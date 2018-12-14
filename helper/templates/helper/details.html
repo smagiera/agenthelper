@@ -10,6 +10,10 @@
         <td>{{ policy.number }}</td>
     </tr>
     <tr>
+        <td>Agent zawierający</td>
+        <td>{{ policy.agent.username }}</td>
+    </tr>
+    <tr>
         <td>Ubezpieczający</td>
         <td><a href="{% url 'helper:client_details' policy.client.id %}">{{ policy.client }}</a></td>
     </tr>

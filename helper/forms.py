@@ -7,7 +7,7 @@ class PolicyForm(ModelForm):
     class Meta:
         model = Policy
         fields = [
-        'number', 'client', 'policy_type', 'date_start', 'date_end', 'date_issued', 'premium',
+        'number', 'agent', 'client', 'policy_type', 'date_start', 'date_end', 'date_issued', 'premium',
         'payment', 'installments', 'policy_value', 'vehicle', 'property', 'isTPL', 'isNNW', 'isAssistance',
         'isCasco', 'isBuilding', 'isMovables', 'isElectronics', 'isAllRisk',
         'insurer', 'scan1', 'scan2', 'scan3',
@@ -22,6 +22,7 @@ class PolicyForm(ModelForm):
         }
         labels = {
             'number': 'Numer polisy',
+            'agent': 'Agent zawierający',
             'client': 'Klient',
             'policy_type': 'Typ polisy',
             'date_start': 'Data rozpoczęcia',

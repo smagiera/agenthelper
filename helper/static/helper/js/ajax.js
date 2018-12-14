@@ -1,7 +1,7 @@
-function update() {
+function update(url="") {
   var date1 = document.getElementById("from").value;
   var date2 = document.getElementById("to").value;
-  $('#results').load("policies/"+date1+"&"+date2+" #result", function() {
+  $('#results').load(url+"policies/"+date1+"&"+date2+" #result", function() {
     var table = $('#policy_list').DataTable({
       language: {
           url: 'https://cdn.datatables.net/plug-ins/1.10.19/i18n/Polish.json'
