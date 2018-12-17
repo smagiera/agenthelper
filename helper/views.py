@@ -13,6 +13,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate
 
+from haystack.generic_views import SearchView
+
 
 class IndexView(LoginRequiredMixin, generic.ListView):
     template_name = 'helper/index.html'
@@ -146,7 +148,7 @@ class StatisticsView(LoginRequiredMixin, generic.TemplateView):
         return Policy.objects.aggregate(Sum('premium'))['premium__sum']
 
 
-class ClientAutocomplete(autocomplete.Select2QuerySetView):
+class ClientAutocomplete(LoginRequiredMixin, autocomplete.Select2QuerySetView):
     def get_queryset(self):
         qs = Client.objects.all()
         if self.q:
@@ -154,7 +156,7 @@ class ClientAutocomplete(autocomplete.Select2QuerySetView):
         
         return qs
 
-class VehicleAutocomplete(autocomplete.Select2QuerySetView):
+class VehicleAutocomplete(LoginRequiredMixin, autocomplete.Select2QuerySetView):
     def get_queryset(self):
         qs = Vehicle.objects.all()
         if self.q:
@@ -174,4 +176,7 @@ class SignupView(generic.FormView):
         user = authenticate(username=username, password=raw_password)
         login(self.request, user)
         return redirect('helper:index')
+
+class MySearchView(SearchView, LoginRequiredMixin):
+    sth = 1
 

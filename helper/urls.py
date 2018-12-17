@@ -5,6 +5,7 @@ from django.views.generic.base import RedirectView
 app_name = 'helper'
 urlpatterns = [
     path('search/', include('haystack.urls')),
+    path('szukaj/', views.MySearchView.as_view(), name='szukaj'),
     # policy views
     path('', views.IndexView.as_view(), name='index'),
     path('<int:pk>/details/', views.DetailView.as_view(), name='details'),
