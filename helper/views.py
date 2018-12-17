@@ -14,6 +14,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate
 
 from haystack.generic_views import SearchView
+from haystack.query import SearchQuerySet
 
 
 class IndexView(LoginRequiredMixin, generic.ListView):
@@ -177,6 +178,6 @@ class SignupView(generic.FormView):
         login(self.request, user)
         return redirect('helper:index')
 
-class MySearchView(SearchView, LoginRequiredMixin):
-    sth = 1
+class MainSearchView(LoginRequiredMixin, SearchView):
+    template_name = 'search/search.html'
 
