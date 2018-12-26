@@ -102,9 +102,9 @@ if LIVEHOST:
     MEDIA_URL = 'http://192.168.1.50/media/'
 
 else:
-    MEDIA_ROOT = '/home/samuel/projects/agenthelper/media/'
-    STATIC_ROOT = "/home/samuel/projects/agenthelper/helper/static/"
-    MEDIA_URL = 'http://127.0.0.1:8000/media/'
+    MEDIA_ROOT = '/var/www/media/'
+    STATIC_ROOT = "/var/www/agenthelper/helper/static/"
+    MEDIA_URL = '/media/'
 
 
 # Database
