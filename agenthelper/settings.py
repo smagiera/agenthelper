@@ -45,8 +45,8 @@ if LIVEHOST:
 else:
     DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.50', '127.0.0.1']
-
+#ALLOWED_HOSTS = ['192.168.1.50', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -166,7 +166,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 #logging config
-
+"""
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -185,5 +185,5 @@ LOGGING = {
         },
     },
 }
-
+"""
 LOGIN_REDIRECT_URL = 'helper:index'
