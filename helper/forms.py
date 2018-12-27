@@ -59,6 +59,7 @@ class VehicleForm(ModelForm):
             'first_registered', 'owner',
         ]
         widgets = {
+            'manufacture_year': forms.TextInput(attrs={'onfocusout': 'setup()'}),
             'first_registered': forms.DateInput(attrs={'class': 'datepicker'}),
             'owner': autocomplete.ModelSelect2(url='helper:client-autocomplete'),
         }

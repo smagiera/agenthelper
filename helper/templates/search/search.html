@@ -2,10 +2,10 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <h2>Wyszukiwanie</h2>
 
     <form method="get" action=".">
         <div class="container mt-2">
+            <h2>Wyszukiwanie</h2>
             {{ form|crispy }}
             <tr>
                 <td>&nbsp;</td>
@@ -18,7 +18,7 @@
         {% if query %}
             <h3 class="mt-5">Wynik wyszukiwania</h3>
 
-            {% for result in page.object_list %}
+            {% for result in page_obj.object_list %}
                 <p>
                     <a href="{{ result.object.get_absolute_url }}">{{ result.object }}</a>
                 </p>
@@ -26,11 +26,11 @@
                 <p>Brak wyników.</p>
             {% endfor %}
 
-            {% if page.has_previous or page.has_next %}
+            {% if page_obj.has_previous or page_obj.has_next %}
                 <div>
-                    {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous{% if page.has_previous %}</a>{% endif %}
+                    {% if page_obj.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous{% if page_obj.has_previous %}</a>{% endif %}
                     |
-                    {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next &raquo;{% if page.has_next %}</a>{% endif %}
+                    {% if page_obj.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next &raquo;{% if page_obj.has_next %}</a>{% endif %}
                 </div>
             {% endif %}
         {% else %}
