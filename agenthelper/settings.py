@@ -12,11 +12,11 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os,socket
 
-#determine if we're running on production
-if socket.gethostname() == 'ip-172-26-5-129':
-    LIVEHOST = True
-else:
+#determine if we're running in dev
+if socket.gethostname() == 'dell':
     LIVEHOST = False
+else:
+    LIVEHOST = True
 
 HAYSTACK_CONNECTIONS = {
     'default': {
