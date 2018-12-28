@@ -12,11 +12,6 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os,socket
 
-#determine if we're running in dev
-if socket.gethostname() == 'dell':
-    LIVEHOST = False
-else:
-    LIVEHOST = True
 
 HAYSTACK_CONNECTIONS = {
     'default': {
@@ -110,15 +105,12 @@ DATABASES = {
         'PORT': '3306',
         'USER': 'agenthelper',
         'PASSWORD': 'topsecret',
-        'NAME': 'testing',
+        'NAME': 'agenthelper',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
         }
     }
 }
-if LIVEHOST:
-    DATABASES['default']['NAME'] = 'agenthelper'
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
