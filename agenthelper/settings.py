@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 import os,socket
 
 #determine if we're running on production
-if socket.gethostname() == 'adax':
+if socket.gethostname() == 'ip-172-26-5-129':
     LIVEHOST = True
 else:
     LIVEHOST = False
@@ -37,8 +37,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ueuxe*ke#^iu9bh1dj9+sp7kmm1gnymhd^_%+6mt1*1-*1*4or'
-
+SECRET_KEY = os.environ["SECRET_KEY"]
 # SECURITY WARNING: don't run with debug turned on in production!
 if LIVEHOST:
     DEBUG = False
@@ -96,15 +95,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'agenthelper.wsgi.application'
 
-if LIVEHOST:
-    MEDIA_ROOT = '/srv/sites/agenthelper/media/'
-    STATIC_ROOT = "/srv/sites/agenthelper/helper/static/"
-    MEDIA_URL = 'http://192.168.1.50/media/'
-
-else:
-    MEDIA_ROOT = '/var/www/media/'
-    STATIC_ROOT = "/var/www/agenthelper/helper/static/"
-    MEDIA_URL = '/media/'
+MEDIA_ROOT = '/var/www/media/'
+STATIC_ROOT = "/var/www/agenthelper/helper/static/"
+MEDIA_URL = '/media/'
 
 
 # Database
