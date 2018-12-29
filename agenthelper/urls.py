@@ -28,6 +28,7 @@ urlpatterns = [
 #    path('accounts/signup/', helper_views.SignupView.as_view(), name='signup'),
     path('accounts/login/', auth_views.LoginView.as_view(), name='login'),
     path('accounts/logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
+    path('accounts/change_password/', helper_views.change_password, name='change_password'),
     #path('admin/', admin.site.urls),
 ]
 

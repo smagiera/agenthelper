@@ -9,9 +9,11 @@ from django.db.models import Sum
 
 from .models import Policy, Vehicle, Client, Insurer
 from .forms import PolicyForm, VehicleForm, ClientForm, InsurerForm
+
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
+from django.contrib.auth import login, authenticate, update_session_auth_hash
 
 from haystack.generic_views import SearchView
 from haystack.query import SearchQuerySet
@@ -177,6 +179,22 @@ class VehicleAutocomplete(LoginRequiredMixin, autocomplete.Select2QuerySetView):
 #        user = authenticate(username=username, password=raw_password)
 #        login(self.request, user)
 #        return redirect('helper:index')
+
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, 'Twoje hasło zostało zmienione')
+            return redirect('change_password')
+        else:
+            messages.error('Popraw błędy!')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'helper/change_password.html', {
+        'form': form
+        })
 
 class MainSearchView(LoginRequiredMixin, SearchView):
     template_name = 'search/search.html'
