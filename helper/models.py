@@ -88,7 +88,8 @@ class Policy(models.Model):
         (2, 'mieszkanie'),
         (3, 'firma'),
         (4, 'podróżne'),
-        (5, 'życie')
+        (5, 'życie'),
+        (6, 'rolne')
     )
     number = models.CharField(max_length=20, unique=True)
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
