@@ -148,25 +148,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-#logging config
-"""
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'my_log_handler': {
-            'level': 'DEBUG' if DEBUG else 'INFO',
-            'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, 'django.log'),
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['my_log_handler'],
-            'level': 'DEBUG' if DEBUG else 'INFO',
-            'propagate': True,
-        },
-    },
-}
-"""
+FILE_UPLOAD_PERMISSIONS=0o644
+
 LOGIN_REDIRECT_URL = 'helper:index'
