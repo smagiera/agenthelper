@@ -151,3 +151,5 @@ STATIC_URL = '/static/'
 FILE_UPLOAD_PERMISSIONS=0o644
 
 LOGIN_REDIRECT_URL = 'helper:index'
+
+DEBUG=True

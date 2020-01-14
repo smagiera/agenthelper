@@ -15,8 +15,6 @@ services:
     image: smagiera/agenthelper
     expose:
       - 80
-    ports:
-      - 80:8080
     environment:
       SECRET_KEY: dsp3gzd2zt27b1$$0f4x&z!cq4m5u5s4bt^kuuxw4rr)3qif5r&
     depends_on:
@@ -24,6 +22,6 @@ services:
   nginx:
     build: ./nginx
     ports:
-      - 1337:80
+      - 80:80
     depends_on:
       - django
