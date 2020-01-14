@@ -12,6 +12,3 @@ Storing clients, vehicles and policies data with scans of documents. Global sear
 * MariaDB
 * Nginx
 * Docker
-
-## Note:
-docker-compose.yml is missing from the repo for now, you'll have to write it if you want to use this.
