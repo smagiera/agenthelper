@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:5.7
+    command: --default-authentication-plugin=mysql_native_password
+    expose:
+      - 3306
+    environment:
+      MYSQL_DATABASE: agenthelper
+      MYSQL_USER: agenthelper
+      MYSQL_PASSWORD: topsecret
+      MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
+  django:
+    image: smagiera/agenthelper
+    expose:
+      - 80
+    environment:
+      SECRET_KEY: dsp3gzd2zt27b1$$0f4x&z!cq4m5u5s4bt^kuuxw4rr)3qif5r&
+    depends_on:
+      - mysql
+  nginx:
+    build: ./nginx
+    ports:
+      - 1337:80
+    depends_on:
+      - django
