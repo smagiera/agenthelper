@@ -168,17 +168,17 @@ class VehicleAutocomplete(LoginRequiredMixin, autocomplete.Select2QuerySetView):
         return qs
 
 
-#class SignupView(generic.FormView):
-#    template_name = 'helper/signup.html'
-#    form_class = UserCreationForm
-#    
-#    def form_valid(self, form):
-#        form.save()
-#        username = form.cleaned_data.get('username')
-#        raw_password = form.cleaned_data.get('password1')
-#        user = authenticate(username=username, password=raw_password)
-#        login(self.request, user)
-#        return redirect('helper:index')
+class SignupView(generic.FormView):
+    template_name = 'helper/signup.html'
+    form_class = UserCreationForm
+    
+    def form_valid(self, form):
+        form.save()
+        username = form.cleaned_data.get('username')
+        raw_password = form.cleaned_data.get('password1')
+        user = authenticate(username=username, password=raw_password)
+        login(self.request, user)
+        return redirect('helper:index')
 
 def change_password(request):
     if request.method == 'POST':

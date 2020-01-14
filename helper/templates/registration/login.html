@@ -11,6 +11,6 @@
     {{ form|crispy }}
     <button class="btn btn-primary" type="submit">Login</button>
   </form>
-  <a href="#">Zarejestruj się</a>
+  <a href="{% url 'helper:signup' %}">Zarejestruj się</a>
 </div>
 {% endblock %}
